@@ -1,0 +1,8 @@
+<div class=container>
+  <h1>Available Bikes 🚴‍♂️ </h1>
+  <% @bikes.each do |bike| %>
+    <%= link_to bike_path(bike) do %>
+    <p><%= bike.bike_type %></p>
+    <% end %>
+  <% end %>
+</div>
