@@ -1,8 +1,19 @@
 # db/seeds.rb
 puts "Cleaning database..."
 Bike.destroy_all
+User.destroy_all
 
+puts "Creating users"
 
+un = {email: "toto@gmail", password: "azerty" }
+deux = {email: "tutu@gmail",  password: "azerty" }
+trois = {email: "titit@gmail",  password: "azerty" }
+quatre = {email: "tutut@gmail", password: "azerty" }
+
+[un, deux, trois, quatre].each do |attributes|
+  user = User.create!(attributes)
+  puts "Created #{user.email}"
+end
 
 puts "Creating bikes"
 
@@ -17,5 +28,6 @@ cinq = {user: User.second, bike_type: "bmx", wheel_size: "14 pouces", frame_mate
   bike = Bike.create!(attributes)
   puts "Created #{bike.bike_type}"
 end
+
 
 puts "Finished!"
