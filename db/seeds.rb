@@ -2,31 +2,51 @@
 puts "Cleaning database..."
 Bike.destroy_all
 User.destroy_all
+Rental.destroy_all
 
 puts "Creating users"
 
-un = {first_name: "jerry", last_name: "ahn", email: "toto@gmail", password: "azerty" }
-deux = {first_name: "tom", last_name: "hatt", email: "tutu@gmail",  password: "azerty" }
-trois = {first_name: "jean", last_name: "bon", email: "titit@gmail",  password: "azerty" }
-quatre = {first_name: "laure", last_name: "attika", email: "tutut@gmail", password: "azerty" }
 
-[un, deux, trois, quatre].each do |attributes|
+first_user = {first_name: "jerry", last_name: "ahn", email: "toto@gmail", password: "azerty", address: "31 rue des arbres 75011 Paris" }
+second_user = {first_name: "tom", last_name: "hatt", email: "tutu@gmail",  password: "azerty", address: "32 rue des plantes 75012 Paris" }
+third_user = {first_name: "jean", last_name: "bon", email: "titit@gmail",  password: "azerty", address: "33 rue des plantes 75012 Paris" }
+fourth_user = {first_name: "laure", last_name: "attika", email: "tutut@gmail", password: "azerty", address: "34 rue des plantes 75012 Paris" }
+
+[first_user, second_user, third_user, fourth_user].each do |attributes|
   user = User.create!(attributes)
   puts "Created #{user.email}"
 end
 
 puts "Creating bikes"
 
-un = {user: User.first, bike_type: "vtc", wheel_size: "700cc", frame_material: "acier", brand: "Danone", condition: "mint", price_per_day: 11.5, price_per_week: 70, address: "31 rue des arbres 75011 Paris" }
-deux =  {user: User.second, bike_type: "route", wheel_size: "29 pouces", frame_material: "alu", brand: "Renault", condition: "dayly", price_per_day: 9, price_per_week: 50, address: "32 rue des plantes 75012 Paris" }
-trois = {user: User.first, bike_type: "cross", wheel_size: "26 pouces", frame_material: "alu", brand: "Apple", condition: "mint", price_per_day: 11.5, price_per_week: 70, address: "33 rue des pins 75013 Paris" }
-quatre = {user: User.second, bike_type: "bmx", wheel_size: "12 pouces", frame_material: "acier", brand: "Giant", condition: "OK", price_per_day: 22.5, price_per_week: 110, address: "34 rue des rossignols 75014 Paris" }
-cinq = {user: User.second, bike_type: "bmx", wheel_size: "14 pouces", frame_material: "carbon", brand: "Giant", condition: "OK", price_per_day: 18, price_per_week: 110, address: "35 rue des oiseaux 75015 Paris" }
 
-[un , deux, trois, quatre, cinq].each do |attributes|
+first_bike = { user: User.first, bike_type: "vtc", wheel_size: "700cc", frame_material: "acier", brand: "Danone", condition: "mint", price_per_day: 11.5, price_per_week: 70 }
+second_bike =  { user: User.second, bike_type: "route", wheel_size: "29 pouces", frame_material: "alu", brand: "Renault", condition: "dayly", price_per_day: 9, price_per_week: 50 }
+third_bike = { user: User.third, bike_type: "cross", wheel_size: "26 pouces", frame_material: "alu", brand: "Apple", condition: "mint", price_per_day: 11.5, price_per_week: 70 }
+fourth_bike = { user: User.fourth, bike_type: "bmx", wheel_size: "12 pouces", frame_material: "acier", brand: "Giant", condition: "OK", price_per_day: 22.5, price_per_week: 110 }
+fifth_bike = { user: User.third, bike_type: "bmx", wheel_size: "14 pouces", frame_material: "carbon", brand: "Giant", condition: "OK", price_per_day: 18, price_per_week: 110 }
+
+
+[first_bike, second_bike, third_bike, fourth_bike, fifth_bike].each do |attributes|
   bike = Bike.create!(attributes)
   puts "Created #{bike.bike_type}"
 end
 
+puts "Creating rentals"
+
+first_rental = Rental.new(total_price: 11.5, start_date: "2023-08-25", end_date: "2023-08-26", status: "pending")
+first_rental.user = User.first
+first_rental.bike = Bike.first
+first_rental.save!
+
+second_rental = Rental.new(total_price: 70, start_date: "2023-09-12", end_date: "2023-09-19", status: "accepted")
+second_rental.user = User.fourth
+second_rental.bike = Bike.second
+second_rental.save!
+
+third_rental = Rental.new(total_price: 11.5, start_date: "2023-10-03", end_date: "2023-10-04", status: "refused")
+third_rental.user = User.third
+third_rental.bike = Bike.third
+third_rental.save!
 
 puts "Finished!"
