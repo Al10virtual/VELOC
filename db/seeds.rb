@@ -17,11 +17,11 @@ end
 
 puts "Creating bikes"
 
-un = {user: User.first, bike_type: "vtc", wheel_size: "700cc", frame_material: "acier", brand: "Danone", condition: "mint", price_per_day: 11.5, price_per_week: 70 }
-deux =  {user: User.second, bike_type: "route", wheel_size: "29 pouces", frame_material: "alu", brand: "Renault", condition: "dayly", price_per_day: 9, price_per_week: 50 }
-trois = {user: User.first, bike_type: "cross", wheel_size: "26 pouces", frame_material: "alu", brand: "Apple", condition: "mint", price_per_day: 11.5, price_per_week: 70 }
-quatre = {user: User.second, bike_type: "bmx", wheel_size: "12 pouces", frame_material: "acier", brand: "Giant", condition: "OK", price_per_day: 22.5, price_per_week: 110 }
-cinq = {user: User.second, bike_type: "bmx", wheel_size: "14 pouces", frame_material: "carbon", brand: "Giant", condition: "OK", price_per_day: 18, price_per_week: 110 }
+un = {user: User.first, bike_type: "vtc", wheel_size: "700cc", frame_material: "acier", brand: "Danone", condition: "mint", price_per_day: 11.5, price_per_week: 70, address: "31 rue des arbres 75011 Paris" }
+deux =  {user: User.second, bike_type: "route", wheel_size: "29 pouces", frame_material: "alu", brand: "Renault", condition: "dayly", price_per_day: 9, price_per_week: 50, address: "32 rue des plantes 75012 Paris" }
+trois = {user: User.first, bike_type: "cross", wheel_size: "26 pouces", frame_material: "alu", brand: "Apple", condition: "mint", price_per_day: 11.5, price_per_week: 70, address: "33 rue des pins 75013 Paris" }
+quatre = {user: User.second, bike_type: "bmx", wheel_size: "12 pouces", frame_material: "acier", brand: "Giant", condition: "OK", price_per_day: 22.5, price_per_week: 110, address: "34 rue des rossignols 75014 Paris" }
+cinq = {user: User.second, bike_type: "bmx", wheel_size: "14 pouces", frame_material: "carbon", brand: "Giant", condition: "OK", price_per_day: 18, price_per_week: 110, address: "35 rue des oiseaux 75015 Paris" }
 
 
 [un , deux, trois, quatre, cinq].each do |attributes|
