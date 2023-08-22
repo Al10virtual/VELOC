@@ -1,5 +1,11 @@
 <%= simple_form_for(@bike) do |f| %>
-    <%= f.input :name %>
+    <%= f.input :bike_type %>
+    <%= f.input :wheel_size %>
+    <%= f.input :frame_material %>
+    <%= f.input :brand %>
+    <%= f.input :condition %>
+    <%= f.input :price_per_day %>
+    <%= f.input :price_per_week %>
     <%= f.input :photo, as: :file %>
     <%= f.button :submit, class: "btn btn-success mr-2" %>
 <% end %>
