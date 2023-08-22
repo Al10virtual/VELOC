@@ -9,13 +9,13 @@ class BikesController < ApplicationController
   end
 
   def new
-    @bikes = Bike.new
+    @bike = Bike.new
   end
 
   def create
     @bike = Bike.new(bike_params)
     @bike.user = current_user
-    if @bike.save
+    if @bike.save!
       redirect_to bikes_path
     else
       render :new, status: :unprocessable_entity
@@ -25,6 +25,8 @@ class BikesController < ApplicationController
   private
 
   def bike_params
-    params.require(:bike).permit(:user_id)
+    params.require(:bike).permit(:bike_type, :wheel_size, :frame_material,
+                                 :brand, :condition, :price_per_day,
+                                 :price_per_week, :photo)
   end
 end

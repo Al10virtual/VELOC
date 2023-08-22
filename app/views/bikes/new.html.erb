@@ -1,0 +1,11 @@
+<div class=container>
+  <h1>New bike</h1>
+
+  <%= render "form", bike: @bike %>
+
+  <br>
+
+  <div>
+      <%= link_to "Back to bikes", bikes_path, class: "btn btn-success mr-2" %>
+  </div>
+</div>

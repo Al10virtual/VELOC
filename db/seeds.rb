@@ -6,11 +6,10 @@ Rental.destroy_all
 
 puts "Creating users"
 
-
-first_user = {first_name: "jerry", last_name: "ahn", email: "toto@gmail", password: "azerty", address: "31 rue des arbres 75011 Paris" }
-second_user = {first_name: "tom", last_name: "hatt", email: "tutu@gmail",  password: "azerty", address: "32 rue des plantes 75012 Paris" }
-third_user = {first_name: "jean", last_name: "bon", email: "titit@gmail",  password: "azerty", address: "33 rue des plantes 75012 Paris" }
-fourth_user = {first_name: "laure", last_name: "attika", email: "tutut@gmail", password: "azerty", address: "34 rue des plantes 75012 Paris" }
+first_user = { first_name: "jerry", last_name: "ahn", email: "toto@gmail.com", password: "azerty", address: "31 rue des arbres 75011 Paris" }
+second_user = { first_name: "tom", last_name: "hatt", email: "tutu@gmail.com",  password: "azerty", address: "32 rue des plantes 75012 Paris" }
+third_user = { first_name: "jean", last_name: "bon", email: "titit@gmail.com",  password: "azerty", address: "33 rue des plantes 75012 Paris" }
+fourth_user = { first_name: "laure", last_name: "attika", email: "tutut@gmail.com", password: "azerty", address: "34 rue des plantes 75012 Paris" }
 
 [first_user, second_user, third_user, fourth_user].each do |attributes|
   user = User.create!(attributes)
@@ -19,13 +18,11 @@ end
 
 puts "Creating bikes"
 
-
 first_bike = { user: User.first, bike_type: "vtc", wheel_size: "700cc", frame_material: "acier", brand: "Danone", condition: "mint", price_per_day: 11.5, price_per_week: 70 }
 second_bike =  { user: User.second, bike_type: "route", wheel_size: "29 pouces", frame_material: "alu", brand: "Renault", condition: "dayly", price_per_day: 9, price_per_week: 50 }
 third_bike = { user: User.third, bike_type: "cross", wheel_size: "26 pouces", frame_material: "alu", brand: "Apple", condition: "mint", price_per_day: 11.5, price_per_week: 70 }
 fourth_bike = { user: User.fourth, bike_type: "bmx", wheel_size: "12 pouces", frame_material: "acier", brand: "Giant", condition: "OK", price_per_day: 22.5, price_per_week: 110 }
 fifth_bike = { user: User.third, bike_type: "bmx", wheel_size: "14 pouces", frame_material: "carbon", brand: "Giant", condition: "OK", price_per_day: 18, price_per_week: 110 }
-
 
 [first_bike, second_bike, third_bike, fourth_bike, fifth_bike].each do |attributes|
   bike = Bike.create!(attributes)
