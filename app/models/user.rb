@@ -3,8 +3,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-  has_many :bikes
-  has_many :rentals
+  has_many :bikes, dependent: :destroy
 
   validates :last_name, presence: true, format: { with: /\A[a-zA-Z]+\z/,
     message: "only allows letters" }
