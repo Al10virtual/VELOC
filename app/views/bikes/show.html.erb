@@ -1,10 +1,33 @@
 <div class="container">
-  <h1>See bike details below:</h1>
-  <p><strong>Type:</strong> <%= @bike.bike_type %></p>
-  <p><strong>Wheel size:</strong> <%= @bike.wheel_size %></p>
-  <p><strong>Frame material:</strong> <%= @bike.frame_material %></p>
-  <p><strong>Brand:</strong> <%= @bike.brand %></p>
-  <p><strong>Conditon:</strong> <%= @bike.condition %></p>
-  <p><strong>Price per day:</strong> <%= @bike.price_per_day %></p>
-  <p><strong>Price per week:</strong> <%= @bike.price_per_week %></p>
+  <h1><%= @bike.bike_type.upcase %> <%=@bike.brand%> in add location </h1>
+  <div class="cadre">
+    <%= image_tag "tiffany-nutt-0ClfreiNppM-unsplash.jpg"%>
+  </div>
+  <div class="row">
+    <div class="col">
+      <p><strong>Type:</strong>
+      <p><strong>Wheel size:</strong>
+      <p><strong>Frame material:</strong>
+      <p><strong>Brand:</strong>
+      <p><strong>Conditon:</strong>
+      <p><strong>Price per day:</strong>
+      <p><strong>Price per week:</strong>
+    </div>
+    <div class="col">
+      <%= @bike.bike_type %></p>
+      <%= @bike.wheel_size %></p>
+      <%= @bike.frame_material %></p>
+      <%= @bike.brand %></p>
+      <%= @bike.condition %></p>
+      <%= @bike.price_per_day %></p>
+      <%= @bike.price_per_week %></p>
+
+    </div>
+     <div class="col">
+        <p></p>
+    </div>
+    <div class="col">
+        <p></p>
+      </div>
+  </div>
 </div>
