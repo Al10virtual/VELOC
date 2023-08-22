@@ -1,6 +1,7 @@
 class DashboardsController < ApplicationController
-  def index
-    @bikes = Bike.all
-    @rentals = Rental.includes(:bike).all
+  def profile
+    @bikes = current_user.bikes
+    @rentals = current_user.rentals
+    @user = current_user
   end
 end
