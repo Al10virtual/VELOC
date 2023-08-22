@@ -4,9 +4,9 @@
 <% if @bikes.present? %>
   <ul>
     <% @bikes.each do |bike| %>
-      <% if bike.available %>
-        <li><%= bike.name %></li>
-      <% end %>
+        <li><%= bike.brand %></li>
+        <li><%= bike.bike_type %></li>
+
     <% end %>
   </ul>
 <% else %>
@@ -27,9 +27,9 @@
   <% if @rentals.present? %>
     <% @rentals.each do |rental| %>
       <tr>
-        <td><%= rental.user_name %></td>
-        <td><%= rental.bike.name %></td>
-        <td><%= rental.rental_date %></td>
+        <td><%= rental.user.first_name %></td>
+        <td><%= rental.start_date %></td>
+        <td><%= rental.end_date %></td>
       </tr>
     <% end %>
     <% else %>
