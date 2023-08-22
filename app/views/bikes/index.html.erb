@@ -1,8 +1,31 @@
 <div class="container">
-  <h1>Available Bikes 🚴‍♂️ </h1>
-  <% @bikes.each do |bike| %>
-    <%= link_to bike_path(bike) do %>
-    <p><%= bike.bike_type %></p>
+  <div class="banner-index pt-3">
+    <div class="d-flex">
+      <div class="p-2 flex-fill">
+        <button type="button" class="btn btn-info">Filters 🚴‍♂️</button>
+      </div>
+    </div>
+    <div class="d-flex">
+      <div class="p-2 flex-fill">
+        <button type="button" class="btn btn-info">I want to rent my bike</button>
+      </div>
+    </div>
+  </div>
+  <div class="row mt-5">
+    <% @bikes.each do |bike| %>
+      <div class="col-4">
+        <%= link_to bike_path(bike) do %>
+          <div class="card mb-4">
+            <div class="card-top">
+              <%= image_tag("first_slide.jpg", {:class => "card-img-top"}) %>
+            </div>
+            <div class="card-bottom">
+              <h5 class="card-title"><%= bike.bike_type %></h5>
+              <p class="card-text"><%= bike.brand %></p>
+            </div>
+          </div>
+        <% end %>
+      </div>
     <% end %>
-  <% end %>
+  </div>
 </div>
