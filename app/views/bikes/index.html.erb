@@ -7,7 +7,7 @@
     </div>
     <div class="d-flex">
       <div class="p-2 flex-fill">
-        <button type="button" class="btn btn-info">I want to rent my bike</button>
+        <%= link_to "I want to rent my bike", new_bike_path, class: "btn btn-info mr-2"%>
       </div>
     </div>
   </div>
@@ -16,9 +16,12 @@
       <div class="col-4">
         <%= link_to bike_path(bike) do %>
           <div class="card mb-4">
-            <div class="card-top">
-              <%= image_tag("first_slide.jpg", {:class => "card-img-top"}) %>
-            </div>
+            <% if bike.photo.attached? %>
+              <div class="card-top" style="background-image: url('<%= cl_image_path bike.photo.key %>')"></div>
+            <% else %>
+              <div class="card-top" style="background-image: url('<%= image_path 'placeholder_bike.jpg' %>')"></div>
+            <% end %>
+
             <div class="card-bottom">
               <h5 class="card-title"><%= bike.bike_type %></h5>
               <p class="card-text"><%= bike.brand %></p>
