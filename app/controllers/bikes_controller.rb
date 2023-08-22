@@ -14,12 +14,17 @@ class BikesController < ApplicationController
 
   def create
     @bike = Bike.new(bike_params)
-    @bike.save
+    @bike.user = current_user
+    if @bike.save
+      redirect_to bikes_path
+    else
+      render :new, status: :unprocessable_entity
+    end
   end
 
   private
 
-  def restaurant_params
-    params.require(:bike).permit(:id)
+  def bike_params
+    params.require(:bike).permit(:user_id)
   end
 end
