@@ -4,4 +4,11 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   has_many :bikes
+
+  validates :last_name, presence: true, format: { with: /\A[a-zA-Z]+\z/,
+    message: "only allows letters" }
+  validates :first_name, presence: true,  format: { with: /\A[a-zA-Z]+\z/,
+    message: "only allows letters" }
+  validates :email, presence: true, uniqueness: true
+  validates :address, prensence: true
 end
