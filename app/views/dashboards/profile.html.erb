@@ -1,0 +1,39 @@
+<h1>Dashboard</h1>
+
+<h2>Available Bikes:</h2>
+<% if @bikes.present? %>
+  <ul>
+    <% @bikes.each do |bike| %>
+      <% if bike.available %>
+        <li><%= bike.name %></li>
+      <% end %>
+    <% end %>
+  </ul>
+<% else %>
+  <p>I haven't rented any bikes at the moment.</p>
+<% end %>
+
+
+<h2>Rentals:</h2>
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Bike Rented</th>
+      <th>Rental Date</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% if @rentals.present? %>
+    <% @rentals.each do |rental| %>
+      <tr>
+        <td><%= rental.user_name %></td>
+        <td><%= rental.bike.name %></td>
+        <td><%= rental.rental_date %></td>
+      </tr>
+    <% end %>
+    <% else %>
+  <p>No rentals recorded yet.</p>
+  <% end %>
+  </tbody>
+</table>
