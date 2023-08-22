@@ -1,7 +1,11 @@
 <div class="container">
   <h1><%= @bike.bike_type.upcase %> <%=@bike.brand%> in add location </h1>
   <div class="cadre">
-    <%= image_tag "tiffany-nutt-0ClfreiNppM-unsplash.jpg"%>
+     <% if @bike.photo.attached? %>
+        <div class="cadre-photo" style="background-image: url('<%= cl_image_path @bike.photo.key %>')"></div>
+      <% else %>
+        <div class="cadre-photo" style="background-image: url('<%= image_path 'placeholder_bike.jpg' %>')"></div>
+      <% end %>
   </div>
   <div class="row">
     <div class="col">
