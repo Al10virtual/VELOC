@@ -2,6 +2,8 @@
   <div class="container">
     <h1>Découvrez <strong>VéLoc</strong> : Votre liberté à deux roues !</h1>
     <p>Explorez la ville et la nature à votre rythme en louant un vélo de qualité chez des particuliers de votre quartier. Louez le vôtre dès aujourd'hui !</p>
-    <a class="btn btn-flat" href="#">Je cherche un vélo</a>
+    <%= link_to bikes_path(@bike) do %>
+      <button class="btn btn-flat">Looking for a bike</button>
+    <% end %>
   </div>
 </div>
