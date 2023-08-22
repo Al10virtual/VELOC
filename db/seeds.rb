@@ -23,7 +23,6 @@ trois = {user: User.first, bike_type: "cross", wheel_size: "26 pouces", frame_ma
 quatre = {user: User.second, bike_type: "bmx", wheel_size: "12 pouces", frame_material: "acier", brand: "Giant", condition: "OK", price_per_day: 22.5, price_per_week: 110 }
 cinq = {user: User.second, bike_type: "bmx", wheel_size: "14 pouces", frame_material: "carbon", brand: "Giant", condition: "OK", price_per_day: 18, price_per_week: 110 }
 
-
 [un , deux, trois, quatre, cinq].each do |attributes|
   bike = Bike.create!(attributes)
   puts "Created #{bike.bike_type}"
