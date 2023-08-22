@@ -1,2 +1,22 @@
 // Import page-specific CSS files here.
 @import "home";
+
+.banner-index {
+  height: 70px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.card {
+  background-size: cover;
+  background-position: center;
+  color: black;
+  border: none;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.card-bottom {
+  padding: 20px;
+}
