@@ -10,5 +10,5 @@ class User < ApplicationRecord
   validates :first_name, presence: true,  format: { with: /\A[a-zA-Z]+\z/,
     message: "only allows letters" }
   validates :email, presence: true, uniqueness: true
-  validates :address, prensence: true
+  validates :address, presence: true
 end
