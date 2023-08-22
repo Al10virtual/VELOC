@@ -5,10 +5,10 @@ User.destroy_all
 
 puts "Creating users"
 
-un = {email: "toto@gmail", password: "azerty" }
-deux = {email: "tutu@gmail",  password: "azerty" }
-trois = {email: "titit@gmail",  password: "azerty" }
-quatre = {email: "tutut@gmail", password: "azerty" }
+un = {first_name: "jerry", last_name: "ahn", email: "toto@gmail", password: "azerty" }
+deux = {first_name: "tom", last_name: "hatt", email: "tutu@gmail",  password: "azerty" }
+trois = {first_name: "jean", last_name: "bon", email: "titit@gmail",  password: "azerty" }
+quatre = {first_name: "laure", last_name: "attika", email: "tutut@gmail", password: "azerty" }
 
 [un, deux, trois, quatre].each do |attributes|
   user = User.create!(attributes)
