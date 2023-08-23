@@ -1,5 +1,4 @@
 class BikesController < ApplicationController
-
   def index
     @bikes = Bike.all
     @markers = @bikes.geocoded.map do |bike|
@@ -33,8 +32,17 @@ class BikesController < ApplicationController
   private
 
   def bike_params
-    params.require(:bike).permit(:bike_type, :wheel_size, :frame_material,
-                                 :brand, :condition, :price_per_day,
-                                 :price_per_week, :bike_model, :is_electric, :photo)
+    params.require(:bike).permit( :bike_type,
+                                  :wheel_size,
+                                  :frame_material,
+                                  :brand,
+                                  :model,
+                                  :condition,
+                                  :price_per_day,
+                                  :price_per_week,
+                                  :bike_model,
+                                  :is_electric,
+                                  :address,
+                                  :photo)
   end
 end

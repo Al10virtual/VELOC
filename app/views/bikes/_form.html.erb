@@ -17,6 +17,7 @@
       "Fatbike",
       "Porteur"
     ], selected: "Vélo ville" %>
+    <%= f.input :is_electric, label: "Votre vélo est-il électrique ?", label_html: { class: 'fw-bold' } %>
     <%= f.input :wheel_size, label: "Taille des roues", label_html: { class: 'fw-bold' }, collection: [
       "10\"",
       "16\"",
@@ -41,6 +42,7 @@
     ], selected: "Bon état" %>
     <%= f.input :price_per_day, label: "Prix à la journée", label_html: { class: 'fw-bold' } %>
     <%= f.input :price_per_week, label: "Prix à la semaine", label_html: { class: 'fw-bold' } %>
-    <%= f.input :photo, as: :file, label: "Photo du vélo", label_html: { class: 'fw-bold' } %>
+    <%= f.input :address, label: "Adresse", label_html: { class: 'fw-bold' } %>
+    <%= f.input :photo, as: :file, label: "Photo du vélo", accept: 'image/png,image/jpeg', label_html: { class: 'fw-bold' } %>
     <%= f.button :submit, class: "btn btn-flat", value: "Créer ce vélo" %>
 <% end %>
