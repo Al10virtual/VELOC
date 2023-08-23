@@ -13,8 +13,8 @@
                 <div class="card-top" style="background-image: url('<%= image_path 'placeholder_bike.jpg' %>')"></div>
               <% end %>
               <div class="card-bottom">
-                <h5 class="card-title"><%= bike.bike_type %></h5>
-                <p class="card-text"><%= bike.brand %></p>
+                  <h5 class="card-title"><%= bike.brand %> <%= bike.model %></h5>
+                  <p class="card-text"><%= bike.bike_type.upcase%></p>
               </div>
             </div>
           <% end %>
@@ -24,7 +24,7 @@
       <p>Je n'ai pas mis de vélo en location pour le moment</p>
     <% end %>
   </div>
-  <h2>Mes réservations :</h2>
+  <h2 id="mesreservations">Mes réservations :</h2>
   <div class="row mt-5">
     <% if @rentals.present? %>
       <% @rentals.each do |rental| %>

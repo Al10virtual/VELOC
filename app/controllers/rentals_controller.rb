@@ -11,7 +11,7 @@ class RentalsController < ApplicationController
     @rental.user = current_user
 
     if @rental.save
-      redirect_to root_path, notice: 'rental was successfully created.'
+      redirect_to dashboards_path(anchor: "mesreservations")
     else
       render :new, status: :unprocessable_entity
     end
