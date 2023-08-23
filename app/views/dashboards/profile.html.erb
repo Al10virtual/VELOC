@@ -29,7 +29,7 @@
     <% if @rentals.present? %>
       <% @rentals.each do |rental| %>
         <div class="col-4">
-          <%= link_to bike_path(rental) do %>
+          <%= link_to bike_path(rental.bike) do %>
             <div class="card mb-4">
               <% if rental.bike.photo.attached? %>
                 <div class="card-top" style="background-image: url('<%= cl_image_path rental.bike.photo.key %>')"></div>
