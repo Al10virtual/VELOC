@@ -1,34 +1,48 @@
 <div class="container">
+
   <div class="banner-index pt-3">
     <div class="d-flex">
       <div class="p-2 flex-fill">
-        <button type="button" class="btn btn-info">Filters 🚴‍♂️</button>
+        <button type="button" class="btn btn-flat">Filtres</button>
       </div>
     </div>
     <div class="d-flex">
       <div class="p-2 flex-fill">
-        <%= link_to "I want to rent my bike", new_bike_path, class: "btn btn-info mr-2"%>
+        <%= link_to "J'ajoute un vélo", new_bike_path, class: "btn btn-flat"%>
       </div>
     </div>
   </div>
-  <div class="row mt-5">
-    <% @bikes.each do |bike| %>
-      <div class="col-4">
-        <%= link_to bike_path(bike) do %>
-          <div class="card mb-4">
-            <% if bike.photo.attached? %>
-              <div class="card-top" style="background-image: url('<%= cl_image_path bike.photo.key %>')"></div>
-            <% else %>
-              <div class="card-top" style="background-image: url('<%= image_path 'placeholder_bike.jpg' %>')"></div>
-            <% end %>
 
-            <div class="card-bottom">
-              <h5 class="card-title"><%= bike.bike_type %></h5>
-              <p class="card-text"><%= bike.brand %></p>
-            </div>
+  <div class="row mt_5">
+    <div class="col-6">
+      <div class="row mt-5">
+        <% @bikes.each do |bike| %>
+          <div class="col-4">
+            <%= link_to bike_path(bike) do %>
+              <div class="card mb-4">
+                <% if bike.photo.attached? %>
+                  <div class="card-top" style="background-image: url('<%= cl_image_path bike.photo.key %>')"></div>
+                <% else %>
+                  <div class="card-top" style="background-image: url('<%= image_path 'placeholder_bike.jpg' %>')"></div>
+                <% end %>
+
+              <div class="card-bottom">
+                <h5 class="card-title"><%= bike.brand %> <%= bike.model %></h5>
+                <p class="card-text"><%= bike.bike_type.upcase%></p>
+              </div>
+             </div>
+            <% end %>
           </div>
         <% end %>
       </div>
-    <% end %>
+    </div>
+
+    <div class="col-6">
+      <div class="mt-5 ms-3" style="width: 100%; height: 600px;"
+        data-controller="map"
+        data-map-markers-value="<%= @markers.to_json %>"
+        data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+      </div>
+    </div>
   </div>
 </div>

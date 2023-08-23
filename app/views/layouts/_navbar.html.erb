@@ -1,6 +1,6 @@
 <div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
   <div class="container">
-    <%= link_to "#", class: "navbar-brand" do %>
+    <%= link_to root_path, class: "navbar-brand" do %>
       <h2><i class="fa-solid fa-bicycle text-info"> VéLoc</i> </h2>
     <% end %>
 
@@ -12,15 +12,17 @@
       <ul class="navbar-nav me-auto">
         <% if user_signed_in? %>
           <li class="nav-item active">
-            <%= link_to "Chercher un vélo", "#", class: "nav-link" %>
+            <%= link_to "Mon profil", "#", class: "nav-link" %>
           </li>
           <li class="nav-item dropdown">
           <a href="#" class="avatar" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar", alt: "dropdown menu" %>
+            <% if current_user.profile_picture.attached? %>
+            <%= image_tag current_user.profile_picture, class: "avatar", alt: 'Default Image'%>
+            <% else %>
+            <%= image_tag 'https://kitt.lewagon.com/placeholder/users/ssaunier', class: "avatar", alt: 'Default Image' %>
+            <% end %>
           </a>
             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-              <%= link_to "Mes vélos à louer", "#", class: "dropdown-item" %>
-              <%= link_to "Mes locations", "#", class: "dropdown-item" %>
               <%= link_to "Mon profil", "#", class: "dropdown-item" %>
               <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
             </div>

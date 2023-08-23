@@ -2,6 +2,14 @@ class BikesController < ApplicationController
 
   def index
     @bikes = Bike.all
+    @markers = @bikes.geocoded.map do |bike|
+      {
+        lat: bike.latitude,
+        lng: bike.longitude,
+        info_window_html: render_to_string(partial: "info_window", locals: {bike: bike}),
+        marker_html: render_to_string(partial: "marker")
+      }
+    end
   end
 
   def show
@@ -27,6 +35,6 @@ class BikesController < ApplicationController
   def bike_params
     params.require(:bike).permit(:bike_type, :wheel_size, :frame_material,
                                  :brand, :condition, :price_per_day,
-                                 :price_per_week, :photo)
+                                 :price_per_week, :bike_model, :is_electric, :photo)
   end
 end

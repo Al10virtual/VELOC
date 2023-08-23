@@ -1,11 +1,46 @@
 <%= simple_form_for(@bike) do |f| %>
-    <%= f.input :bike_type %>
-    <%= f.input :wheel_size %>
-    <%= f.input :frame_material %>
-    <%= f.input :brand %>
-    <%= f.input :condition %>
-    <%= f.input :price_per_day %>
-    <%= f.input :price_per_week %>
-    <%= f.input :photo, as: :file %>
-    <%= f.button :submit, class: "btn btn-success mr-2" %>
+    <%= f.input :bike_type, label: "Type", label_html: { class: 'fw-bold' }, collection: [
+      "Vélo tout terrain",
+      "Vélo ville",
+      "Bmx",
+      "Vélo tout chemin",
+      "Vélo route",
+      "Draisienne",
+      "Vélo tandem",
+      "Vélo pliant",
+      "Vélo gravel",
+      "Vélo cargo",
+      "Vélo trek",
+      "Vélo ville longue distance",
+      "City speed",
+      "Tricycle",
+      "Fatbike",
+      "Porteur"
+    ], selected: "Vélo ville" %>
+    <%= f.input :wheel_size, label: "Taille des roues", label_html: { class: 'fw-bold' }, collection: [
+      "10\"",
+      "16\"",
+      "20\"",
+      "26\"",
+      "27.5\"",
+      "29\"",
+      "700c"
+    ], selected: "700c" %>
+    <%= f.input :frame_material, label: "Matière du cadre", label_html: { class: 'fw-bold' }, collection: [
+      "Acier",
+      "Aluminium",
+      "Carbone"
+    ], selected: "Aluminium" %>
+    <%= f.input :brand, label: "Marque", label_html: { class: 'fw-bold' } %>
+    <%= f.input :model, label: "Modèle", label_html: { class: 'fw-bold' } %>
+    <%= f.input :condition, label: "Matière du cadre", label_html: { class: 'fw-bold' }, collection: [
+      "État neuf",
+      "Très bon état",
+      "Bon état",
+      "État satisfaisant"
+    ], selected: "Bon état" %>
+    <%= f.input :price_per_day, label: "Prix à la journée", label_html: { class: 'fw-bold' } %>
+    <%= f.input :price_per_week, label: "Prix à la semaine", label_html: { class: 'fw-bold' } %>
+    <%= f.input :photo, as: :file, label: "Photo du vélo", label_html: { class: 'fw-bold' } %>
+    <%= f.button :submit, class: "btn btn-flat", value: "Créer ce vélo" %>
 <% end %>

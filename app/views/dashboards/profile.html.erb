@@ -1,39 +1,58 @@
-<h1>Dashboard</h1>
-
-<h2>Available Bikes:</h2>
-<% if @bikes.present? %>
-  <ul>
-    <% @bikes.each do |bike| %>
-        <li><%= bike.brand %></li>
-        <li><%= bike.bike_type %></li>
-
-    <% end %>
-  </ul>
-<% else %>
-  <p>I haven't rented any bikes at the moment.</p>
-<% end %>
+<h1 class="text-center">Dashboard</h1>
 
 
-<h2>Rentals:</h2>
-<table>
-  <thead>
-    <tr>
-      <th>User</th>
-      <th>Bike Rented</th>
-      <th>Rental Date</th>
-    </tr>
-  </thead>
-  <tbody>
-  <% if @rentals.present? %>
-    <% @rentals.each do |rental| %>
-      <tr>
-        <td><%= rental.user.first_name %></td>
-        <td><%= rental.start_date %></td>
-        <td><%= rental.end_date %></td>
-      </tr>
-    <% end %>
-    <% else %>
-  <p>No rentals recorded yet.</p>
-  <% end %>
-  </tbody>
-</table>
+
+<div class="container">
+  <h2>Mes Vélos disponible à la location:</h2>
+    <div class="row mt-5">
+      <% if @bikes.present? %>
+        <% @bikes.each do |bike| %>
+          <div class="col-4">
+            <%= link_to bike_path(bike) do %>
+              <div class="card mb-4">
+                <% if bike.photo.attached? %>
+                  <div class="card-top" style="background-image: url('<%= cl_image_path bike.photo.key %>')"></div>
+                <% else %>
+                  <div class="card-top" style="background-image: url('<%= image_path 'placeholder_bike.jpg' %>')"></div>
+                <% end %>
+
+                <div class="card-bottom">
+                  <h5 class="card-title"><%= bike.bike_type %></h5>
+                  <p class="card-text"><%= bike.brand %></p>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        <% end %>
+      <% else %>
+      <p>Je n'ai pas mis de vélo en location pour le moment</p>
+      <% end %>
+    </div>
+    <h2>Mes locations:</h2>
+    
+     <div class="row mt-5">
+      <% if @rentals.present? %>
+        <% @rentals.each do |rental| %>
+          <div class="col-4">
+            <%= link_to bike_path(rental) do %>
+              <div class="card mb-4">
+                <% if rental.bike.photo.attached? %>
+                  <div class="card-top" style="background-image: url('<%= cl_image_path rental.bike.photo.key %>')"></div>
+                <% else %>
+                  <div class="card-top" style="background-image: url('<%= image_path 'placeholder_bike.jpg' %>')"></div>
+                <% end %>
+
+                <div class="card-bottom">
+                  <h5 class="card-title"><%= rental.bike.bike_type %>  <%= rental.bike.brand %></h5>
+                  <p class="card-text"> Vélo de <%= rental.user.first_name %></p>
+                  <p class="card-text"> Loué du <%= rental.start_date %> au <%= rental.end_date %></p>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        <% end %>
+      <% else %>
+      <p>Je n'ai pas mis de vélo en location pour le moment</p>
+      <% end %>
+    </div>
+</div>
