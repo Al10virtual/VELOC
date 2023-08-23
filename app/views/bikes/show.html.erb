@@ -1,15 +1,17 @@
 <div class="container">
   <h1><%= @bike.brand %> <%= @bike.model %></h1>
   <div class="row align-items-center justify-content-center">
-    <div class="col">
+    <div class="col text-center">
       <% if @bike.photo.attached? %>
-        <%= cl_image_tag(@bike.photo.key, width: 300, height: 300, crop: :thumb) %>
-      <%# rounded %>
+        <%= cl_image_tag(@bike.photo.key, height: 300, style:'border-radius: 3%;', crop: :thumb) %>
       <% else %>
         <%= cl_image_tag('placeholder_bike.jpg', crop: :thumb) %>
       <% end %>
     </div>
     <div class="col">
+      <p><% if @bike.is_electric %>
+          <i class="fa-solid fa-bolt-lightning text-warning" style="font-size: 30px;"></i>
+        <% end %></p>
       <p><strong>Type :</strong> <%= @bike.bike_type %></p>
       <p><strong>Taille des roues :</strong> <%= @bike.wheel_size %></p>
       <p><strong>Matière du cadre :</strong> <%= @bike.frame_material %></p>
