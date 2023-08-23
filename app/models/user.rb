@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   has_many :bikes, dependent: :destroy
   has_many :rentals, dependent: :destroy
+  has_one_attached :profile_picture
 
   validates :last_name, presence: true, format: { with: /\A[a-zA-Z]+\z/,
     message: "only allows letters" }
