@@ -1,4 +1,6 @@
 # db/seeds.rb
+require "open-uri"
+
 puts "Cleaning database..."
 Bike.destroy_all
 User.destroy_all
@@ -6,10 +8,26 @@ Rental.destroy_all
 
 puts "Creating users"
 
-first_user = { first_name: "jerry", last_name: "ahn", email: "toto@gmail.com", password: "azerty", address: "31 rue des arbres 75011 Paris" }
-second_user = { first_name: "tom", last_name: "hatt", email: "tutu@gmail.com",  password: "azerty", address: "32 rue des plantes 75012 Paris" }
-third_user = { first_name: "jean", last_name: "bon", email: "titit@gmail.com",  password: "azerty", address: "33 rue des plantes 75012 Paris" }
-fourth_user = { first_name: "laure", last_name: "attika", email: "tutut@gmail.com", password: "azerty", address: "34 rue des plantes 75012 Paris" }
+first_user = {  first_name: "jerry",
+                last_name: "ahn",
+                email: "toto@gmail.com",
+                password: "azerty",
+                address: "61 Rue Oberkampf, 75011 Paris" }
+second_user = { first_name: "tom",
+                last_name: "hatt",
+                email: "tutu@gmail.com",
+                password: "azerty",
+                address: "30 R. de Lévis, 75017 Paris" }
+third_user = {  first_name: "jean",
+                last_name: "bon",
+                email: "titit@gmail.com",
+                password: "azerty",
+                address: "Rue de la Croix Nivert, 75015 Paris" }
+fourth_user = { first_name: "laure",
+                last_name: "attika",
+                email: "tutut@gmail.com",
+                password: "azerty",
+                address: "67 Rue Mademoiselle, 75015 Paris" }
 
 [first_user, second_user, third_user, fourth_user].each do |attributes|
   user = User.create!(attributes)
@@ -18,30 +36,101 @@ end
 
 puts "Creating bikes"
 
-first_bike = { user: User.first, bike_type: "vtc", wheel_size: "700cc", frame_material: "acier", brand: "Danone", condition: "mint", price_per_day: 11.5, price_per_week: 70, address: "16 Villa Gaudelet, 75011 Paris"}
-second_bike =  { user: User.second, bike_type: "route", wheel_size: "29 pouces", frame_material: "alu", brand: "Renault", condition: "dayly", price_per_day: 9, price_per_week: 50, address: "31 boulevard Beausejour, 75016 Paris"}
-third_bike = { user: User.third, bike_type: "cross", wheel_size: "26 pouces", frame_material: "alu", brand: "Apple", condition: "mint", price_per_day: 11.5, price_per_week: 70, address: "3 avanue Mozart, 75016 Paris"}
-fourth_bike = { user: User.fourth, bike_type: "bmx", wheel_size: "12 pouces", frame_material: "acier", brand: "Giant", condition: "OK", price_per_day: 22.5, price_per_week: 110, address: "12 villa Gaudelet, 75016 Paris"}
-fifth_bike = { user: User.third, bike_type: "bmx", wheel_size: "14 pouces", frame_material: "carbon", brand: "Giant", condition: "OK", price_per_day: 18, price_per_week: 110, address: "114 Av. des Champs-Élysées, 75008 Paris"}
+first_bike = {    user: User.first,
+                  bike_type: "Vélo ville",
+                  wheel_size: "700c",
+                  frame_material: "Aluminium",
+                  brand: "Canyon",
+                  model: "Roadlite",
+                  is_electric: false,
+                  condition: "Bon état",
+                  address: "114 Av. des Champs-Élysées, 75008 Paris",
+                  price_per_day: 11.5,
+                  price_per_week: 70 }
+second_bike = {   user: User.second,
+                  bike_type: "Vélo route",
+                  wheel_size: "700c",
+                  frame_material: "Carbone",
+                  brand: "Decathlon",
+                  model: "Btwin Triban",
+                  is_electric: false,
+                  condition: "Très bon état",
+                  address: "12 villa Gaudelet, 75016 Paris",
+                  price_per_day: 9,
+                  price_per_week: 50 }
+third_bike = {    user: User.third,
+                  bike_type: "Vélo cargo",
+                  wheel_size: "26\"",
+                  frame_material: "Aluminium",
+                  brand: "Decathlon",
+                  model: "ELOPS LONGTAIL R500Elec",
+                  is_electric: true,
+                  condition: "Bon état",
+                  address: "3 avenue Mozart, 75016 Paris",
+                  price_per_day: 11.5,
+                  price_per_week: 70 }
+fourth_bike = {   user: User.fourth,
+                  bike_type: "Bmx", wheel_size: "16\"",
+                  frame_material: "Aluminium",
+                  brand: "Giant",
+                  model: "Explore E+",
+                  is_electric: true,
+                  condition: "État satisfaisant",
+                  address: "31 boulevard Beausejour, 75016 Paris",
+                  price_per_day: 22.5,
+                  price_per_week: 110 }
+fifth_bike = {    user: User.third,
+                  bike_type: "Vélo tout terrain",
+                  wheel_size: "27.5\"",
+                  frame_material: "Aluminium",
+                  brand: "Orbea",
+                  model: "Alma",
+                  is_electric: false,
+                  condition: "Bon état",
+                  address: "16 Villa Gaudelet, 75011 Paris",
+                  price_per_day: 25,
+                  price_per_week: 150 }
 
 [first_bike, second_bike, third_bike, fourth_bike, fifth_bike].each do |attributes|
-  bike = Bike.create!(attributes)
-  puts "Created #{bike.bike_type}"
+  bike = Bike.new(attributes)
+  file = URI.open("https://coresites-cdn-adm.imgix.net/twc/wp-content/uploads/2014/06/Second-Hand-Road-bike.jpg?fit=crop")
+  bike.photo.attach(
+    io: file,
+    filename: "bike.jpg",
+    content_type: "image/jpg"
+  )
+  bike.save!
+  puts "Created #{bike.brand} #{bike.model} "
 end
 
 puts "Creating rentals"
 
-first_rental = Rental.new(total_price: 11.5, start_date: "2023-08-25", end_date: "2023-08-26", status: "pending")
+first_rental = Rental.new(
+  total_price: 11.5,
+  start_date: "2023-08-25",
+  end_date: "2023-08-26",
+  status: "pending"
+)
 first_rental.user = User.first
 first_rental.bike = Bike.first
 first_rental.save!
 
-second_rental = Rental.new(total_price: 70, start_date: "2023-09-12", end_date: "2023-09-19", status: "accepted")
+second_rental = Rental.new(
+  total_price: 70,
+  start_date: "2023-09-12",
+  end_date: "2023-09-19",
+  status: "accepted"
+)
 second_rental.user = User.fourth
 second_rental.bike = Bike.second
 second_rental.save!
 
-third_rental = Rental.new(total_price: 11.5, start_date: "2023-10-03", end_date: "2023-10-04", status: "refused")
+third_rental = Rental.new(
+  total_price: 11.5,
+  start_date: "2023-10-03",
+  end_date: "2023-10-04",
+  status: "refused"
+)
 third_rental.user = User.third
 third_rental.bike = Bike.third
 third_rental.save!
