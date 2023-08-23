@@ -63,7 +63,7 @@ third_bike = {    user: User.third,
                   wheel_size: "26\"",
                   frame_material: "Aluminium",
                   brand: "Decathlon",
-                  model: "ELOPS LONGTAIL R500Elec",
+                  model: "R500Elec",
                   is_electric: true,
                   condition: "Bon état",
                   address: "3 avenue Mozart, 75016 Paris",
@@ -91,9 +91,25 @@ fifth_bike = {    user: User.third,
                   price_per_day: 25,
                   price_per_week: 150 }
 
+# [first_bike, second_bike, third_bike, fourth_bike, fifth_bike].each do |attributes|
+#   bike = Bike.new(attributes)
+#   file = URI.open("https://coresites-cdn-adm.imgix.net/twc/wp-content/uploads/2014/06/Second-Hand-Road-bike.jpg?fit=crop")
+#   bike.photo.attach(
+#     io: file,
+#     filename: "bike.jpg",
+#     content_type: "image/jpg"
+#   )
+#   bike.save!
+#   puts "Created #{bike.brand} #{bike.model} "
+# end
+
 [first_bike, second_bike, third_bike, fourth_bike, fifth_bike].each do |attributes|
+  url = "https://api.unsplash.com/photos/random?client_id=#{ENV["ACCESS_KEY"]}&query=bicycle&orientation=landscape"
+  photo_serialized = URI.open(url).read
+  photo_json = JSON.parse(photo_serialized)
+  photo_url = photo_json["urls"]["small"]
+  file = URI.open(photo_url)
   bike = Bike.new(attributes)
-  file = URI.open("https://coresites-cdn-adm.imgix.net/twc/wp-content/uploads/2014/06/Second-Hand-Road-bike.jpg?fit=crop")
   bike.photo.attach(
     io: file,
     filename: "bike.jpg",
