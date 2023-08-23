@@ -1,36 +1,28 @@
 <div class="container">
-  <h1><%= @bike.bike_type.upcase %> <%=@bike.brand%> in add location </h1>
-  <div class="cadre">
-     <% if @bike.photo.attached? %>
-        <div class="cadre-photo" style="background-image: url('<%= cl_image_path @bike.photo.key %>')"></div>
+  <h1><%= @bike.brand %> <%= @bike.model %></h1>
+  <div class="row align-items-center justify-content-center">
+    <div class="col">
+      <% if @bike.photo.attached? %>
+        <%= cl_image_tag(@bike.photo.key, width: 300, height: 300, crop: :thumb) %>
+      <%# rounded %>
       <% else %>
-        <div class="cadre-photo" style="background-image: url('<%= image_path 'placeholder_bike.jpg' %>')"></div>
+        <%= cl_image_tag('placeholder_bike.jpg', crop: :thumb) %>
       <% end %>
+    </div>
+    <div class="col">
+      <p><strong>Type :</strong> <%= @bike.bike_type %></p>
+      <p><strong>Taille des roues :</strong> <%= @bike.wheel_size %></p>
+      <p><strong>Matière du cadre :</strong> <%= @bike.frame_material %></p>
+      <p><strong>Marque :</strong> <%= @bike.brand %></p>
+      <p><strong>Modèle :</strong> <%= @bike.model %></p>
+      <p><strong>État :</strong> <%= @bike.condition %></p>
+      <p><strong>Prix à la journée :</strong> <%= @bike.price_per_day.to_i %> €</p>
+      <p><strong>Prix à la semaine :</strong> <%= @bike.price_per_week.to_i %> €</p>
+    </div>
   </div>
   <div class="row">
     <div class="col">
-      <p><strong>Type:</strong>
-      <p><strong>Wheel size:</strong>
-      <p><strong>Frame material:</strong>
-      <p><strong>Brand:</strong>
-      <p><strong>Conditon:</strong>
-      <p><strong>Price per day:</strong>
-      <p><strong>Price per week:</strong>
+      <%= link_to "Voir tous les vélos", bikes_path, class: "btn btn-flat" %>
     </div>
-    <div class="col">
-      <%= @bike.bike_type %></p>
-      <%= @bike.wheel_size %></p>
-      <%= @bike.frame_material %></p>
-      <%= @bike.brand %></p>
-      <%= @bike.condition %></p>
-      <%= @bike.price_per_day %></p>
-      <%= @bike.price_per_week %></p>
-    </div>
-     <div class="col">
-        <p></p>
-    </div>
-    <div class="col">
-        <p></p>
-      </div>
   </div>
 </div>

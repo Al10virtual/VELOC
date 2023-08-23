@@ -27,6 +27,6 @@ class BikesController < ApplicationController
   def bike_params
     params.require(:bike).permit(:bike_type, :wheel_size, :frame_material,
                                  :brand, :condition, :price_per_day,
-                                 :price_per_week, :photo)
+                                 :price_per_week, :bike_model, :is_electric, :photo)
   end
 end
