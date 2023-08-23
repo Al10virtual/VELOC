@@ -1,5 +1,26 @@
-<%= simple_form_for([@bike, @rental]) do |f| %>
-  <%= f.input :start_date %>
-  <%= f.input :end_date %>
-  <%= f.submit %>
+
+
+
+<% if false %>
+  <%= simple_form_for([@bike, @rental]) do |f| %>
+    <%= f.input :start_date %>
+    <%= f.input :end_date %>
+    <%= f.submit %>
+  <% end %>
+
 <% end %>
+
+
+
+<%= simple_form_for([@bike, @rental]) do |f| %>
+  <%= f.input :start_date,
+              as: :date, html5: true,
+              input_html: { data: { controller: "datepicker" } } %>
+
+    <%= f.input :end_date,
+              as: :date, html5: true,
+              input_html: { data: { controller: "datepicker" } } %>
+
+  <%= f.submit %>
+
+  <% end %>
