@@ -18,11 +18,11 @@ end
 
 puts "Creating bikes"
 
-first_bike = { user: User.first, bike_type: "vtc", wheel_size: "700cc", frame_material: "acier", brand: "Danone", condition: "mint", price_per_day: 11.5, price_per_week: 70 }
-second_bike =  { user: User.second, bike_type: "route", wheel_size: "29 pouces", frame_material: "alu", brand: "Renault", condition: "dayly", price_per_day: 9, price_per_week: 50 }
-third_bike = { user: User.third, bike_type: "cross", wheel_size: "26 pouces", frame_material: "alu", brand: "Apple", condition: "mint", price_per_day: 11.5, price_per_week: 70 }
-fourth_bike = { user: User.fourth, bike_type: "bmx", wheel_size: "12 pouces", frame_material: "acier", brand: "Giant", condition: "OK", price_per_day: 22.5, price_per_week: 110 }
-fifth_bike = { user: User.third, bike_type: "bmx", wheel_size: "14 pouces", frame_material: "carbon", brand: "Giant", condition: "OK", price_per_day: 18, price_per_week: 110 }
+first_bike = { user: User.first, bike_type: "vtc", wheel_size: "700cc", frame_material: "acier", brand: "Danone", condition: "mint", price_per_day: 11.5, price_per_week: 70, address: "16 Villa Gaudelet, 75011 Paris"}
+second_bike =  { user: User.second, bike_type: "route", wheel_size: "29 pouces", frame_material: "alu", brand: "Renault", condition: "dayly", price_per_day: 9, price_per_week: 50, address: "31 boulevard Beausejour, 75016 Paris"}
+third_bike = { user: User.third, bike_type: "cross", wheel_size: "26 pouces", frame_material: "alu", brand: "Apple", condition: "mint", price_per_day: 11.5, price_per_week: 70, address: "3 avanue Mozart, 75016 Paris"}
+fourth_bike = { user: User.fourth, bike_type: "bmx", wheel_size: "12 pouces", frame_material: "acier", brand: "Giant", condition: "OK", price_per_day: 22.5, price_per_week: 110, address: "12 villa Gaudelet, 75016 Paris"}
+fifth_bike = { user: User.third, bike_type: "bmx", wheel_size: "14 pouces", frame_material: "carbon", brand: "Giant", condition: "OK", price_per_day: 18, price_per_week: 110, address: "114 Av. des Champs-Élysées, 75008 Paris"}
 
 [first_bike, second_bike, third_bike, fourth_bike, fifth_bike].each do |attributes|
   bike = Bike.create!(attributes)
