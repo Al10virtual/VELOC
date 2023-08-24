@@ -1,9 +1,9 @@
 <div class=container>
-  <h1>Proposer un vélo à la location</h1>
-
-  <%= render "form", bike: @bike %>
-  <br>
-  <div>
+  <div class="banner-index pt-3">
+    <div class="flex-fill">
       <%= link_to "Voir tous les vélos", bikes_path, class: "btn btn-flat" %>
+    </div>
   </div>
+  <h1>Proposer un vélo à la location</h1>
+  <%= render "form", bike: @bike %>
 </div>

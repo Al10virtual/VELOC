@@ -1,6 +1,12 @@
 class BikesController < ApplicationController
+  before_action :authenticate_user!, except: :index
+
   def index
-    @bikes = Bike.all
+    if params[:type].present?
+      @bikes = Bike.where(bike_type: params[:type])
+    else
+      @bikes = Bike.all
+    end
     @markers = @bikes.geocoded.map do |bike|
       {
         lat: bike.latitude,

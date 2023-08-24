@@ -6,6 +6,7 @@
   font-weight: lighter;
   opacity: 0.6;
   transition: opacity 0.3s ease;
+  margin-top: 8px;
 }
 
 .btn-ghost:hover {
@@ -39,4 +40,8 @@
 .btn-gradient:hover {
   background: linear-gradient(#147EFF, #0F67DA);
   color: white;
+}
+
+.btn-fixed-width {
+  width: 150px;
 }

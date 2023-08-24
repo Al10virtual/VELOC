@@ -1,0 +1,43 @@
+.bike-photo {
+  height: 300px;
+  background-size: cover;
+  background-position: center;
+  border-radius: 3%;
+}
+
+.bike-title-show {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  margin: 20px 0;
+}
+
+.badge-bike-type {
+  background-color: #F29727;
+  padding-left: 8px;
+  padding-right: 8px;
+  font-size: var(--bs-body-font-size);
+}
+
+.badge-rental-pending {
+  background-color: #F29727;
+  padding: 10px;
+  border-radius: 5%;
+}
+
+.badge-rental-accepted {
+  background-color: #22A699;
+  padding: 10px;
+  border-radius: 5%;
+}
+
+.badge-rental-refused {
+  background-color: #F24C3D;
+  padding: 10px;
+  border-radius: 10%;
+}
+
+.badge-progress {
+  border-radius: 50px;
+  height: 10px;
+}
