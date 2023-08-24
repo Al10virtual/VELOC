@@ -4,6 +4,8 @@ class BikesController < ApplicationController
   def index
     if params[:type].present?
       @bikes = Bike.where(bike_type: params[:type])
+    elsif params[:elec].present?
+      @bikes = Bike.where(is_electric: true)
     else
       @bikes = Bike.all
     end
@@ -12,7 +14,8 @@ class BikesController < ApplicationController
         lat: bike.latitude,
         lng: bike.longitude,
         info_window_html: render_to_string(partial: "info_window", locals: { bike: bike }),
-        marker_html: render_to_string(partial: "marker")
+        marker_html: render_to_string(partial: "marker"),
+        id: bike.id
       }
     end
   end

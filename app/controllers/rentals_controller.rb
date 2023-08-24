@@ -31,7 +31,7 @@ class RentalsController < ApplicationController
     @rental = Rental.find(params[:id])
     @rental.status = "denied"
     if @rental.save
-      redirect_to dashboards_path, notice: "La demande de location a été refusé."
+      redirect_to dashboards_path, notice: "La demande de location a été refusée."
     else
       redirect_to dashboards_path, notice: "Une erreur est survenue"
     end
