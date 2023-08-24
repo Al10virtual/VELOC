@@ -11,13 +11,20 @@
       </div>
     </div>
   </div>
-  <div class="row mt_5">
+
+  <div class="row mt_5" data-controller="map"
+        data-map-markers-value ="<%= @markers.to_json %>"
+        data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
     <div class="col-6">
       <div class="row mt-5">
         <% @bikes.order(:id).reverse.each do |bike| %>
+          <% marker = @markers.find { |m| m[:id] == bike.id } %>
           <div class="col-6">
             <%= link_to bike_path(bike) do %>
-              <div class="card mb-4">
+              <div class="card mb-4"
+                data-action="mouseenter->map#showInfoWindow"
+                data-map-target='card'
+                id="<%= bike.id %>">
                 <% if bike.photo.attached? %>
                   <div class="card-top" style="background-image: url('<%= cl_image_path bike.photo.key %>')"></div>
                 <% else %>
@@ -36,11 +43,11 @@
         <% end %>
       </div>
     </div>
+
+  
+
     <div class="col-6">
-      <div id="map" class="mt-5 ms-3"
-        data-controller="map"
-        data-map-markers-value="<%= @markers.to_json %>"
-        data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+      <div data-map-target="map" id="map" class="mt-5 ms-3">
       </div>
     </div>
   </div>
