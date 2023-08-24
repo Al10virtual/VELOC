@@ -11,8 +11,9 @@ class BikesController < ApplicationController
       {
         lat: bike.latitude,
         lng: bike.longitude,
-        info_window_html: render_to_string(partial: "info_window", locals: { bike: bike }),
-        marker_html: render_to_string(partial: "marker")
+        info_window_html: render_to_string(partial: "info_window", locals: {bike: bike}),
+        marker_html: render_to_string(partial: "marker"),
+        id: bike.id
       }
     end
   end
