@@ -11,10 +11,6 @@
                 label: "Nom",
                 required: true,
                 autofocus: true %>
-      <%= f.input :address,
-                label: "Adresse",
-                required: true,
-                autofocus: true %>
       <%= f.input :email,
                 label: "Adresse email",
                 required: true,
@@ -29,8 +25,7 @@
                 label: "Confirmation de mot de passe",
                 required: true,
                 input_html: { autocomplete: "new-password" } %>
-      <%= f.label :profile_picture, label: "Photo de profil"%>
-      <%= f.file_field :profile_picture, accept: 'image/png,image/jpeg' %>
+      <%= f.file_field :profile_picture, accept: 'image/png,image/jpg', label: "Photo de profil" %>
     </div>
     <div class="form-actions">
       <%= f.button :submit, "S'inscrire" %>

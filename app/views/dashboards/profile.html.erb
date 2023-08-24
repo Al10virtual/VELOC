@@ -1,6 +1,6 @@
 <div class="container">
   <h1>Mon compte</h1>
-  <h2>Mes vélos disponibles à la location :</h2>
+  <h2 id="bikes">Mes vélos disponibles à la location :</h2>
   <div class="row mt-5">
     <% if @bikes.present? %>
       <% @bikes.each do |bike| %>
@@ -24,7 +24,7 @@
       <p>Je n'ai pas mis de vélo en location pour le moment</p>
     <% end %>
   </div>
-  <h2 id="mesreservations">Mes réservations :</h2>
+  <h2 id="rentals">Mes réservations :</h2>
   <div class="row mt-5">
     <% if @rentals.present? %>
       <% @rentals.each do |rental| %>
