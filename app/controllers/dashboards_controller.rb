@@ -6,7 +6,6 @@ class DashboardsController < ApplicationController
     @pending_rentals = Rental.joins(:bike).where(bikes: { user_id: current_user.id }, status: 'pending')
     @accepted_rentals = Rental.joins(:bike).where(bikes: { user_id: current_user.id }, status: 'accepted')
     @denied_rentals = Rental.joins(:bike).where(bikes: { user_id: current_user.id }, status: 'denied')
-
   end
 
   def edit_profile
