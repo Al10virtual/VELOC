@@ -48,4 +48,29 @@
       <p>Je n'ai pas mis de vélo en location pour le moment</p>
     <% end %>
   </div>
+    <h2>Demandes de location en attente :</h2>
+  <div class="row mt-5">
+    <% if @pending_rentals.present? %>
+      <% @pending_rentals.each do |rental| %>
+        <div class="col-4">
+          <div class="card mb-4">
+            <% if rental.bike.photo.attached? %>
+              <div class="card-top" style="background-image: url('<%= cl_image_path rental.bike.photo.key %>')"></div>
+            <% else %>
+              <div class="card-top" style="background-image: url('<%= image_path 'placeholder_bike.jpg' %>')"></div>
+            <% end %>
+            <div class="card-bottom">
+              <h5 class="card-title">Demande de <%= rental.user.first_name %></h5>
+              <%= rental.status %>
+              <p class="card-text">Location du <%= rental.start_date.strftime("%m/%d/%Y") %> au <%= rental.end_date.strftime("%m/%d/%Y") %></p>
+              <%= button_to "Valider", accept_rental_path(rental), method: :patch, class: 'btn btn-success' %>
+              <%= button_to "Refuser", deny_rental_path(rental), method: :patch, class: 'btn btn-danger' %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    <% else %>
+      <p>Il n'y a aucune demande de location en attente pour le moment.</p>
+    <% end %>
+  </div>
 </div>
