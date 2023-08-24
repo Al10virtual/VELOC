@@ -13,7 +13,28 @@
 }
 
 .badge-bike-type {
-  background-color: #FFBA86;
+  background-color: #F29727;
+  padding-left: 8px;
+  padding-right: 8px;
+  font-size: var(--bs-body-font-size);
+}
+
+.badge-rental-pending {
+  background-color: #F29727;
+  padding: 10px;
+  border-radius: 5%;
+}
+
+.badge-rental-accepted {
+  background-color: #22A699;
+  padding: 10px;
+  border-radius: 5%;
+}
+
+.badge-rental-refused {
+  background-color: #F24C3D;
+  padding: 10px;
+  border-radius: 10%;
 }
 
 .badge-progress {
