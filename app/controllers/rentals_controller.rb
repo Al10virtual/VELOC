@@ -17,7 +17,6 @@ class RentalsController < ApplicationController
     end
   end
 
-
   def accept
     @rental = Rental.find(params[:id])
     @rental.status = "accepted"
