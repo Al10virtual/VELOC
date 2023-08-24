@@ -7,10 +7,12 @@ class User < ApplicationRecord
   has_many :rentals, dependent: :destroy
   has_one_attached :profile_picture
 
-  validates :last_name, presence: true, format: { with: /\A[a-zA-Z]+\z/,
-    message: "only allows letters" }
-  validates :first_name, presence: true,  format: { with: /\A[a-zA-Z]+\z/,
-    message: "only allows letters" }
+  validates   :last_name,
+              presence: true,
+              format: { with: /\A[a-zA-Z]+\z/, message: "only allows letters" }
+  validates   :first_name,
+              presence: true,
+              format: { with: /\A[a-zA-Z]+\z/, message: "only allows letters" }
   validates :email, presence: true, uniqueness: true
   validates :address, presence: true
 end

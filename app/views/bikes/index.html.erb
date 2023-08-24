@@ -24,8 +24,11 @@
                   <div class="card-top" style="background-image: url('<%= image_path 'placeholder_bike.jpg' %>')"></div>
                 <% end %>
                 <div class="card-bottom">
-                  <h5 class="card-title"><%= bike.brand %> <%= bike.model %></h5>
-                  <p class="card-text"><%= bike.bike_type.upcase%></p>
+                  <div>
+                    <h5 class="card-title"><%= bike.brand %> <%= bike.model %></h5>
+                    <p class="card-text"><%= bike.bike_type.upcase%></p>
+                  </div>
+                  <div class="card-price"><%= bike.price_per_day.to_i %> € / jour</div>
                 </div>
               </div>
             <% end %>

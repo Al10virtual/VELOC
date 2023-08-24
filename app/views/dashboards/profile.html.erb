@@ -13,8 +13,8 @@
                 <div class="card-top" style="background-image: url('<%= image_path 'placeholder_bike.jpg' %>')"></div>
               <% end %>
               <div class="card-bottom">
-                  <h5 class="card-title"><%= bike.brand %> <%= bike.model %></h5>
-                  <p class="card-text"><%= bike.bike_type.upcase%></p>
+                <h5 class="card-title"><%= bike.brand %> <%= bike.model %></h5>
+                <p class="card-text"><%= bike.bike_type.upcase%></p>
               </div>
             </div>
           <% end %>
@@ -37,9 +37,8 @@
                 <div class="card-top" style="background-image: url('<%= image_path 'placeholder_bike.jpg' %>')"></div>
               <% end %>
               <div class="card-bottom">
-                <h5 class="card-title"><%= rental.bike.bike_type %>  <%= rental.bike.brand %></h5>
-                <p class="card-text"> Vélo de <%= rental.user.first_name %></p>
-                <p class="card-text"> Loué du <%= rental.start_date %> au <%= rental.end_date %></p>
+                <h5 class="card-title"><%= rental.bike.model %>  <%= rental.bike.brand %> de <%= rental.user.first_name %></h5>
+                <p class="card-text">Ma location du <%= rental.start_date.strftime("%m/%d/%Y") %> au <%= rental.end_date.strftime("%m/%d/%Y") %></p>
               </div>
             </div>
           <% end %>

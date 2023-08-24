@@ -24,5 +24,12 @@
 
 .card-bottom {
   padding: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
 }
 
+.card-price {
+  font-size:0.8em;
+}
