@@ -12,7 +12,7 @@
     </div>
   </div>
   <div class="bike-title-show">
-    <h1 class='m-0'><%= @bike.brand %> <%= @bike.model %></h1>
+    <h1 class='m-0'><%= @bike.brand %> <%= @bike.model %> de <%= @bike.user.first_name.capitalize %></h1>
     <span class="badge badge-bike-type ms-4"><%= @bike.bike_type %></span>
   </div>
   <div class="row align-items-center justify-content-center">
@@ -26,14 +26,14 @@
     </div>
     <div class="col">
       <p><% if @bike.is_electric %>
-          <i class="fa-solid fa-bolt-lightning text-warning" style="font-size: 30px;"></i>
+          <i class="fa-solid fa-bolt-lightning" style="font-size: 30px; color: #F29727"></i>
         <% end %></p>
       <p><strong>Taille des roues :</strong> <%= @bike.wheel_size %></p>
       <p><strong>Matière du cadre :</strong> <%= @bike.frame_material %></p>
       <p><strong>Marque :</strong> <%= @bike.brand %></p>
       <p><strong>Modèle :</strong> <%= @bike.model %></p>
       <p><strong>Adresse :</strong> <%= @bike.address %></p>
-      <p><strong>État :</strong></p>
+      <p><strong>État :</strong> <%= @bike.condition %></p>
       <p><% bike_condition = @bike.condition %>
         <% case bike_condition %>
         <% when 'État neuf'%>
