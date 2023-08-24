@@ -86,7 +86,7 @@ fifth_bike = {    user: User.third,
                   brand: "Orbea",
                   model: "Alma",
                   is_electric: false,
-                  condition: "Bon état",
+                  condition: "État neuf",
                   address: "16 Villa Gaudelet, 75011 Paris",
                   price_per_day: 25,
                   price_per_week: 150 }

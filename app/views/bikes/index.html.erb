@@ -1,12 +1,35 @@
-<div class="container">
+<div class="container px-0">
   <div class="banner-index pt-3">
     <div class="d-flex">
-      <div class="p-2 flex-fill">
-        <button type="button" class="btn btn-flat">Filtres</button>
+      <div class="dropdown">
+        <button class="btn btn-flat dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" data-toggle="dropdown">
+          Type de vélo
+        </button>
+        <div class="dropdown-menu">
+          <%= link_to "Vélo tout terrain", bikes_path(type: "Vélo tout terrain"), class: "dropdown-item"%>
+          <%= link_to "Vélo ville", bikes_path(type: "Vélo ville"), class: "dropdown-item"%>
+          <%= link_to "BMX", bikes_path(type: "Bmx"), class: "dropdown-item"%>
+          <%= link_to "Vélo tout chemin", bikes_path(type: "Vélo tout chemin"), class: "dropdown-item"%>
+          <%= link_to "Vélo route", bikes_path(type: "Vélo route"), class: "dropdown-item"%>
+          <%= link_to "Draisienne", bikes_path(type: "Draisienne"), class: "dropdown-item"%>
+          <%= link_to "Vélo tandem", bikes_path(type: "Vélo tandem"), class: "dropdown-item"%>
+          <%= link_to "Vélo pliant", bikes_path(type: "Vélo pliant"), class: "dropdown-item"%>
+          <%= link_to "Vélo gravel", bikes_path(type: "Vélo gravel"), class: "dropdown-item"%>
+          <%= link_to "Vélo cargo", bikes_path(type: "Vélo cargo"), class: "dropdown-item"%>
+          <%= link_to "Vélo trek", bikes_path(type: "Vélo trek"), class: "dropdown-item"%>
+          <%= link_to "Vélo ville longue distance", bikes_path(type: "Vélo ville longue distance"), class: "dropdown-item"%>
+          <%= link_to "City speed", bikes_path(type: "City speed"), class: "dropdown-item"%>
+          <%= link_to "Tricycle", bikes_path(type: "Tricyclemx"), class: "dropdown-item"%>
+          <%= link_to "Fatbike", bikes_path(type: "Fatbike"), class: "dropdown-item"%>
+          <%= link_to "Porteur", bikes_path(type: "Porteur"), class: "dropdown-item"%>
+        </div>
+      </div>
+      <div>
+        <%= link_to "Voir tous les vélos", bikes_path, class: "btn btn-flat ms-3"%>
       </div>
     </div>
     <div class="d-flex">
-      <div class="p-2 flex-fill">
+      <div class="flex-fill">
         <%= link_to "J'ajoute un vélo", new_bike_path, class: "btn btn-flat"%>
       </div>
     </div>
@@ -14,30 +37,34 @@
   <div class="row mt_5">
     <div class="col-6">
       <div class="row mt-5">
-        <% @bikes.order(:id).reverse.each do |bike| %>
-          <div class="col-6">
-            <%= link_to bike_path(bike) do %>
-              <div class="card mb-4">
-                <% if bike.photo.attached? %>
-                  <div class="card-top" style="background-image: url('<%= cl_image_path bike.photo.key %>')"></div>
-                <% else %>
-                  <div class="card-top" style="background-image: url('<%= image_path 'placeholder_bike.jpg' %>')"></div>
-                <% end %>
-                <div class="card-bottom">
-                  <div>
-                    <h5 class="card-title"><%= bike.brand %> <%= bike.model %></h5>
-                    <p class="card-text"><%= bike.bike_type.upcase%></p>
+        <% if @bikes.blank? %>
+          <%= 'Il n\'y a aucun vélo dans cette catégorie !' %>
+        <% else %>
+          <% @bikes.order(:id).reverse.each do |bike| %>
+            <div class="col-6">
+              <%= link_to bike_path(bike) do %>
+                <div class="card mb-4">
+                  <% if bike.photo.attached? %>
+                    <div class="card-top" style="background-image: url('<%= cl_image_path bike.photo.key %>')"></div>
+                  <% else %>
+                    <div class="card-top" style="background-image: url('<%= image_path 'placeholder_bike.jpg' %>')"></div>
+                  <% end %>
+                  <div class="card-bottom">
+                    <div>
+                      <h5 class="card-title"><%= bike.brand %> <%= bike.model %></h5>
+                      <p class="card-text"><%= bike.bike_type.upcase%></p>
+                    </div>
+                    <div class="card-price"><%= bike.price_per_day.to_i %> € / jour</div>
                   </div>
-                  <div class="card-price"><%= bike.price_per_day.to_i %> € / jour</div>
                 </div>
-              </div>
-            <% end %>
-          </div>
+              <% end %>
+            </div>
+          <% end %>
         <% end %>
       </div>
     </div>
     <div class="col-6">
-      <div id="map" class="mt-5 ms-3"
+      <div id="map" class="mt-5"
         data-controller="map"
         data-map-markers-value="<%= @markers.to_json %>"
         data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">

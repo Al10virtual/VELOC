@@ -1,0 +1,22 @@
+.bike-photo {
+  height: 300px;
+  background-size: cover;
+  background-position: center;
+  border-radius: 3%;
+}
+
+.bike-title-show {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  margin: 20px 0;
+}
+
+.badge-bike-type {
+  background-color: #FFBA86;
+}
+
+.badge-progress {
+  border-radius: 50px;
+  height: 10px;
+}

@@ -1,42 +1,79 @@
-<div class="container">
+<div class="container px-0">
   <div class="banner-index pt-3">
     <div class="d-flex">
-      <div class="p-2 flex-fill">
-        <%= link_to "Voir tous les vélos", bikes_path, class: "btn btn-flat mt-3" %>
+      <div class="flex-fill">
+        <%= link_to "Voir tous les vélos", bikes_path, class: "btn btn-flat" %>
       </div>
     </div>
     <div class="d-flex">
-      <div class="p-2 flex-fill">
+      <div class="flex-fill">
         <%= link_to "J'ajoute un vélo", new_bike_path, class: "btn btn-flat"%>
       </div>
     </div>
   </div>
-  <h1><%= @bike.brand %> <%= @bike.model %></h1>
+  <div class="bike-title-show">
+    <h1 class='m-0'><%= @bike.brand %> <%= @bike.model %></h1>
+    <span class="badge badge-bike-type ms-4"><%= @bike.bike_type %></span>
+  </div>
   <div class="row align-items-center justify-content-center">
     <div class="col text-center">
       <% if @bike.photo.attached? %>
         <%= cl_image_tag(@bike.photo.key, height: 300, style:'border-radius: 3%;', crop: :thumb) %>
       <% else %>
-        <%= cl_image_tag('placeholder_bike.jpg', crop: :thumb) %>
+        <%# <%= cl_image_tag('placeholder_bike.jpg', height: 300, style:'border-radius: 3%;', crop: :thumb) %>
+        <img src="https://images.pexels.com/photos/210095/pexels-photo-210095.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" height="300px" style="border-radius: 3%">
       <% end %>
     </div>
     <div class="col">
       <p><% if @bike.is_electric %>
           <i class="fa-solid fa-bolt-lightning text-warning" style="font-size: 30px;"></i>
         <% end %></p>
-      <p><strong>Type :</strong> <%= @bike.bike_type %></p>
       <p><strong>Taille des roues :</strong> <%= @bike.wheel_size %></p>
       <p><strong>Matière du cadre :</strong> <%= @bike.frame_material %></p>
       <p><strong>Marque :</strong> <%= @bike.brand %></p>
       <p><strong>Modèle :</strong> <%= @bike.model %></p>
-      <p><strong>État :</strong> <%= @bike.condition %></p>
-      <p><strong>Prix à la journée :</strong> <%= @bike.price_per_day.to_i %> €</p>
-      <p><strong>Prix à la semaine :</strong> <%= @bike.price_per_week.to_i %> €</p>
-    </div>
+      <p><strong>Adresse :</strong> <%= @bike.address %></p>
+      <p><strong>État :</strong></p>
+      <p><% bike_condition = @bike.condition %>
+        <% case bike_condition %>
+        <% when 'État neuf'%>
+        <div class="progress badge-progress">
+          <div class="progress-bar bg-success" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+        <% when 'Très bon état' %>
+        <div class="progress badge-progress">
+          <div class="progress-bar bg-info" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+        <% when 'Bon état' %>
+        <div class="progress badge-progress">
+          <div class="progress-bar bg-warning" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+      <% else %>
+        <div class="progress badge-progress">
+          <div class="progress-bar bg-danger" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+      <% end %>
+    </p>
+    <p>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Prix à la journée</th>
+            <th scope="col">Prix à la semaine</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><%= @bike.price_per_day.to_i %> €</td>
+            <td><%= @bike.price_per_week.to_i %> €</td>
+          </tr>
+        </tbody>
+      </table>
+    </p>
   </div>
-  <div class="row">
-    <div class="col">
-      <%= link_to "Réserver", new_bike_rental_path(@bike), class: "btn btn-flat" %>
-    </div>
+</div>
+<div class="row">
+  <div class="col">
+    <%= link_to "Réserver", new_bike_rental_path(@bike), class: "btn btn-flat" %>
   </div>
 </div>
