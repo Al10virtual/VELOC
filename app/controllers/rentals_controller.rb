@@ -1,4 +1,6 @@
 class RentalsController < ApplicationController
+  before_action :authenticate_user!
+
   def new
     @rental = Rental.new
     @bike = Bike.find(params[:bike_id])
