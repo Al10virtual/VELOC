@@ -91,18 +91,6 @@ fifth_bike = {    user: User.third,
                   price_per_day: 25,
                   price_per_week: 150 }
 
-# [first_bike, second_bike, third_bike, fourth_bike, fifth_bike].each do |attributes|
-#   bike = Bike.new(attributes)
-#   file = URI.open("https://coresites-cdn-adm.imgix.net/twc/wp-content/uploads/2014/06/Second-Hand-Road-bike.jpg?fit=crop")
-#   bike.photo.attach(
-#     io: file,
-#     filename: "bike.jpg",
-#     content_type: "image/jpg"
-#   )
-#   bike.save!
-#   puts "Created #{bike.brand} #{bike.model} "
-# end
-
 [first_bike, second_bike, third_bike, fourth_bike, fifth_bike].each do |attributes|
   url = "https://api.unsplash.com/photos/random?client_id=#{ENV["ACCESS_KEY"]}&query=bicycle&orientation=landscape"
   photo_serialized = URI.open(url).read
@@ -152,3 +140,15 @@ third_rental.bike = Bike.third
 third_rental.save!
 
 puts "Finished!"
+
+
+t.integer "total_price"
+t.date "start_date"
+t.date "end_date"
+t.string "status", default: "pending"
+t.bigint "bike_id", null: false
+t.bigint "user_id", null: false
+t.datetime "created_at", null: false
+t.datetime "updated_at", null: false
+t.index ["bike_id"], name: "index_rentals_on_bike_id"
+t.index ["user_id"], name: "index_rentals_on_user_id"
