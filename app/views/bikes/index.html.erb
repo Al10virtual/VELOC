@@ -34,46 +34,45 @@
       </div>
     </div>
   </div>
-
-  <div class="row mt_5" data-controller="map"
-        data-map-markers-value ="<%= @markers.to_json %>"
-        data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
-    
+  <div class="row mt_5">
     <div class="col-6">
-      <div class="row mt-5">            
-           <% if @bikes.blank? %>
-            <p><%= 'Il n\'y a aucun vélo dans cette catégorie !' %></p>
-           <% else %>         
-            <% @bikes.order(:id).reverse.each do |bike| %>
-              <% marker = @markers.find { |m| m[:id] == bike.id } %>
-              <div class="col-6">
-                <%= link_to bike_path(bike) do %>
-                  <div class="card mb-4"
-                    data-action="mouseenter->map#showInfoWindow"
-                    data-map-target='card'
-                    id="<%= bike.id %>">
-                    <% if bike.photo.attached? %>
-                      <div class="card-top" style="background-image: url('<%= cl_image_path bike.photo.key %>')"></div>
-                    <% else %>
-                      <div class="card-top" style="background-image: url('<%= image_path 'placeholder_bike.jpg' %>')"></div>
-                    <% end %>
-                    <div class="card-bottom">
-                      <div>
-                        <h5 class="card-title"><%= bike.brand %> <%= bike.model %></h5>
-                        <p class="card-text"><%= bike.bike_type.upcase%></p>
-                      <div>
+
+      <div class="row mt-5">
+        <% if @bikes.blank? %>
+          <p><%= 'Il n\'y a aucun vélo dans cette catégorie !' %></p>
+        <% else %>
+          <% @bikes.order(:id).reverse.each do |bike| %>
+            <% marker = @markers.find { |m| m[:id] == bike.id } %>
+            <div class="col-6">
+              <%= link_to bike_path(bike) do %>
+                <div class="card mb-4"
+                     data-action="mouseenter->map#showInfoWindow"
+                     data-map-target='card'
+                     id="<%= bike.id %>">
+                  <% if bike.photo.attached? %>
+                    <div class="card-top" style="background-image: url('<%= cl_image_path bike.photo.key %>')"></div>
+                  <% else %>
+                    <div class="card-top" style="background-image: url('<%= image_path 'placeholder_bike.jpg' %>')"></div>
+                  <% end %>
+                  <div class="card-bottom">
+                    <div>
+                      <h5 class="card-title"><%= bike.brand %> <%= bike.model %></h5>
+                      <p class="card-text"><%= bike.bike_type.upcase%></p>
                       <div class="card-price"><%= bike.price_per_day.to_i %> € / jour</div>
                     </div>
                   </div>
-                <% end %>
-              </div>
-            <% end %>
+                </div>
+              <% end %>
+            </div>
           <% end %>
-        </div>
+        <% end %>
       </div>
-
-      <div class="col-6">
-        <div data-map-target="map" id="map" class="mt-5 ms-3">
+    </div>
+    <div class="col-6">
+      <div data-map-target="map" id="map" class="mt-5 ms-3"
+           data-controller="map"
+           data-map-markers-value ="<%= @markers.to_json %>"
+           data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
       </div>
     </div>
   </div>
