@@ -3,17 +3,16 @@
   <div data-controller="tab">
     <ul class="tabs">
       <li>
-        <a href="#" data-tab-target="tab" data-action="click->tab#changeTab" data-tab-identifier-param="bikes" class="tab-active">Mes Vélos</a>
+        <a href="#" data-tab-target="tab" data-action="click->tab#changeTab" data-tab-identifier-param="bikes" class="tab-active">Mes vélos</a>
       </li>
       <li>
-        <a href="#" data-tab-target="tab" data-action="click->tab#changeTab" data-tab-identifier-param="rentals">Mes Reservations</a>
+        <a href="#" data-tab-target="tab" data-action="click->tab#changeTab" data-tab-identifier-param="rentals">Mes réservations</a>
       </li>
       <li>
         <a href="#" data-tab-target="tab" data-action="click->tab#changeTab" data-tab-identifier-param="requests">Mes demandes</a>
       </li>
     </ul>
     <div data-tab-target="content" id="bikes" class="tab-content ">
-      <h2>Mes vélos disponibles à la location :</h2>
       <div class="row mt-5">
         <% if @bikes.present? %>
           <% @bikes.each do |bike| %>
@@ -39,7 +38,6 @@
       </div>
     </div>
     <div data-tab-target="content" id="rentals" class="tab-content d-none">
-      <h2>Mes réservations</h2>
       <div class="row mt-5">
         <% if @rentals.present? %>
           <% if @pending_rentals.present? %>
@@ -104,14 +102,13 @@
                 <% end %>
               </div>
             <% end %>
-          </div>
+          <% end %>
+        <% else %>
+          <p>Je n'ai pas mis de vélo en location pour le moment</p>
         <% end %>
-      <% else %>
-        <p>Je n'ai pas mis de vélo en location pour le moment</p>
-      <% end %>
+      </div>
     </div>
     <div id="requests" data-tab-target="content" class="tab-content d-none">
-      <h2>Demandes en attente</h2>
       <div class="row mt-5">
         <% if !@rentals_user.empty? %>
           <% @rentals_user.each do |rental| %>
@@ -143,5 +140,3 @@
         <% end %>
       </div>
     </div>
-  </div>
-</div>

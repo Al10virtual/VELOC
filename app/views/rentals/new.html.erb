@@ -1,7 +1,7 @@
 <div class="container">
-  <h1>Location d'un vélo : </h1>
+  <h1>Réserver <%= @bike.brand %> <%= @bike.model %> de <%= @bike.user.first_name.capitalize %></h1>
+vélo : </h1>
 
   <%= render "form", task: @rental %>
-
 
 </div>

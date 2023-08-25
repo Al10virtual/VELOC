@@ -6,7 +6,8 @@
   list-style-type: none;
   padding: 0;
   display: flex;
-  border-bottom: 2px solid #ccc;
+  border-bottom: 0px;
+  margin-top: 15px;
 }
 
 .tabs li {
@@ -19,15 +20,13 @@
   text-decoration: none;
   color: #333;
   border: 1px solid #ccc;
-  border-bottom: none;
-  border-radius: 5px 5px 0 0;
+  border-radius: 5px;
   background-color: #f5f5f5;
   transition: background-color 0.3s;
 }
 
 .tabs a.tab-active {
   background-color: #fff;
-  border-bottom: 1px solid #fff;
 }
 
 .tabs a:hover {
@@ -35,8 +34,7 @@
 }
 
 .tab-content {
-  border: 1px solid #ccc;
-  padding: 20px;
+  border: 0px;
   border-top: none;
   border-radius: 0 0 5px 5px;
 }
