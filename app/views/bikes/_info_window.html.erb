@@ -1,2 +1,6 @@
-<h2><%= bike.brand %> <%= bike.model %></h2>
-<p><%= bike.address %></p>
+<div class="container">
+  <%= cl_image_tag bike.photo.key, height: 100, width: 100, class:'rounded-circle' %>
+  <%= link_to bike_path(bike) do %>
+  <div class="btn btn-flat"><%= bike.address %></div>
+  <% end %>
+</div>

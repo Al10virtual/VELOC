@@ -51,7 +51,8 @@
             <div class="col-6">
               <%= link_to bike_path(bike) do %>
                 <div class="card mb-4"
-                     data-action="mouseenter->map#showInfoWindow"
+                     <%# data-action="mouseenter->map#showInfoWindow" %>
+                     <%# data-action="mouseleave->map#showInfoWindow" %>
                      data-map-target='card'
                      id="<%= bike.id %>">
                   <% if bike.photo.attached? %>

@@ -57,20 +57,19 @@ export default class extends Controller {
     cards.forEach((card, index) => {
       // Put a microphone on each card listening for a mouseenter event
       card.addEventListener('mouseenter', () => {
-        // Here we trigger the display of the corresponding marker infoWindow with the "togglePopup" function provided by mapbox-gl
-        this.markersValue[index].togglePopup();
+        document.querySelector(`#marker-${card.id}`).click();
       });
       // We also put a microphone listening for a mouseleave event to close the modal when user doesn't hover the card anymore
       card.addEventListener('mouseleave', () => {
-        this.markersValue.markers[index].togglePopup();
+        document.querySelector(".mapboxgl-popup-content").remove();
       });
     });
   }
 
-  #toggleCardHighlighting(event){
-    // We select the card corresponding to the marker's id
-    const card = document.querySelector(`[data-bike-id="${event.currentTarget.dataset.markerId}"]`);
-    // Then we toggle the class "highlight github" to the card
-    card.classList.toggle('highlight');
-  }
+  // #toggleCardHighlighting(event){
+  //   // We select the card corresponding to the marker's id
+  //   const card = document.querySelector(`[data-bike-id="${event.currentTarget.dataset.markerId}"]`);
+  //   // Then we toggle the class "highlight github" to the card
+  //   card.classList.toggle('highlight');
+  // }
 }
