@@ -50,7 +50,8 @@
             <div class="col-6">
               <%= link_to bike_path(bike) do %>
                 <div class="card mb-4"
-                     data-action="mouseenter->map#showInfoWindow"
+                     <%# data-action="mouseenter->map#showInfoWindow" %>
+                     <%# data-action="mouseleave->map#showInfoWindow" %>
                      data-map-target='card'
                      id="<%= bike.id %>">
                   <% if bike.photo.attached? %>
@@ -63,7 +64,7 @@
                       <h5 class="card-title"><%= bike.brand %> <%= bike.model %></h5>
                       <p class="card-text"><%= bike.bike_type.upcase%></p>
                     </div>
-                      <div class="card-price"><%= bike.price_per_day.to_i %> € / jour<br><br><%= bike.price_per_week.to_i %> € / sem</div>
+                      <div class="card-price"><%= bike.price_per_day.to_i %> € / jour<p></p><%= bike.price_per_week.to_i %> € / sem</div>
                   </div>
                 </div>
               <% end %>

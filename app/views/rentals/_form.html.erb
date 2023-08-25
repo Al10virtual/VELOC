@@ -4,7 +4,9 @@
     <%= f.input :end_date %>
     <%= f.submit "Valider" %>
   <% end %>
-<% end %>
+
+<div class="d-flex justify-content-around">
+  <div>
 <%= simple_form_for([@bike, @rental]) do |f| %>
   <%= f.input :start_date, label: "Début de la location",
               as: :date, html5: true,
@@ -14,3 +16,9 @@
               input_html: { data: { controller: "datepicker" } } %>
   <%= f.submit "Valider", class:"btn btn-flat" %>
 <% end %>
+  </div>
+  <div>
+    <%= cl_image_tag(@bike.photo.key, height: 300, style:'border-radius: 3%;', crop: :thumb) %>
+  </div>
+
+</div>
