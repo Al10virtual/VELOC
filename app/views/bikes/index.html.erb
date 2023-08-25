@@ -41,7 +41,6 @@
   </div>
   <div class="row mt_5">
     <div class="col-6">
-
       <div class="row mt-5">
         <% if @bikes.blank? %>
           <p><%= 'Il n\'y a aucun vélo dans cette catégorie !' %></p>
@@ -63,8 +62,8 @@
                     <div>
                       <h5 class="card-title"><%= bike.brand %> <%= bike.model %></h5>
                       <p class="card-text"><%= bike.bike_type.upcase%></p>
-                      <div class="card-price"><%= bike.price_per_day.to_i %> € / jour</div>
                     </div>
+                      <div class="card-price"><%= bike.price_per_day.to_i %> € / jour<br><br><%= bike.price_per_week.to_i %> € / sem</div>
                   </div>
                 </div>
               <% end %>
