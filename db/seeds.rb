@@ -108,15 +108,3 @@ fifth_bike = {    user: User.third,
 end
 
 puts "Finished!"
-
-
-t.integer "total_price"
-t.date "start_date"
-t.date "end_date"
-t.string "status", default: "pending"
-t.bigint "bike_id", null: false
-t.bigint "user_id", null: false
-t.datetime "created_at", null: false
-t.datetime "updated_at", null: false
-t.index ["bike_id"], name: "index_rentals_on_bike_id"
-t.index ["user_id"], name: "index_rentals_on_user_id"
