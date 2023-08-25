@@ -1,5 +1,5 @@
 <%= simple_form_for(@bike) do |f| %>
-  <%= f.input :bike_type, label: "Type", label_html: { class: 'fw-bold' }, collection: [
+  <%= f.input :bike_type, label: "Type", collection: [
       "Vélo tout terrain",
       "Vélo ville",
       "Bmx",
@@ -18,7 +18,7 @@
       "Porteur"
     ], selected: "Vélo ville" %>
   <%= f.input :is_electric, label: "Votre vélo est-il électrique ?", label_html: { class: 'fw-bold' } %>
-  <%= f.input :wheel_size, label: "Taille des roues", label_html: { class: 'fw-bold' }, collection: [
+  <%= f.input :wheel_size, label: "Taille des roues", collection: [
       "10\"",
       "16\"",
       "20\"",
@@ -27,22 +27,23 @@
       "29\"",
       "700c"
     ], selected: "700c" %>
-  <%= f.input :frame_material, label: "Matière du cadre", label_html: { class: 'fw-bold' }, collection: [
+  <%= f.input :frame_material, label: "Matière du cadre", collection: [
       "Acier",
       "Aluminium",
       "Carbone"
     ], selected: "Aluminium" %>
-  <%= f.input :brand, label: "Marque", label_html: { class: 'fw-bold' } %>
-  <%= f.input :model, label: "Modèle", label_html: { class: 'fw-bold' } %>
-  <%= f.input :condition, label: "Matière du cadre", label_html: { class: 'fw-bold' }, collection: [
+  <%= f.input :brand, label: "Marque" %>
+  <%= f.input :model, label: "Modèle" %>
+  <%= f.input :condition, label: "Matière du cadre", collection: [
       "État neuf",
       "Très bon état",
       "Bon état",
       "État satisfaisant"
     ], selected: "Bon état" %>
-  <%= f.input :price_per_day, label: "Prix à la journée", label_html: { class: 'fw-bold' } %>
-  <%= f.input :price_per_week, label: "Prix à la semaine", label_html: { class: 'fw-bold' } %>
-  <%= f.input :address, label: "Adresse", label_html: { class: 'fw-bold' } %>
-  <%= f.input :photo, as: :file, label: "Photo du vélo", accept: 'image/png,image/jpeg', label_html: { class: 'fw-bold' } %>
+  <%= f.input :price_per_day, label: "Prix à la journée" %>
+  <%= f.input :price_per_week, label: "Prix à la semaine" %>
+  <%= f.input :address, label: "Adresse", input_html: {data: {address_autocomplete_target: "address"}}, as: :hidden,
+  wrapper_html: {data: {controller: "address-autocomplete", address_autocomplete_api_key_value: ENV["MAPBOX_API_KEY"]}}%>
+  <%= f.input :photo, as: :file, label: "Photo du vélo", accept: 'image/png,image/jpeg' %>
   <%= f.button :submit, class: "btn btn-flat", value: "Créer ce vélo" %>
 <% end %>

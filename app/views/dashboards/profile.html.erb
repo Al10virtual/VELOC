@@ -12,7 +12,6 @@
         <a href="#" data-tab-target="tab" data-action="click->tab#changeTab" data-tab-identifier-param="requests">Mes demandes</a>
       </li>
     </ul>
-
     <div data-tab-target="content" id="bikes" class="tab-content ">
       <h2>Mes vélos disponibles à la location :</h2>
       <div class="row mt-5">
@@ -39,9 +38,8 @@
         <% end %>
       </div>
     </div>
-
     <div data-tab-target="content" id="rentals" class="tab-content d-none">
-      <h2 id="mesreservations">Mes réservations :</h2>
+      <h2>Mes réservations</h2>
       <div class="row mt-5">
         <% if @rentals.present? %>
           <% if @pending_rentals.present? %>
@@ -55,8 +53,10 @@
                       <div class="card-top" style="background-image: url('<%= image_path 'placeholder_bike.jpg' %>')"></div>
                     <% end %>
                     <div class="card-bottom">
-                      <h5 class="card-title"><%= rental.bike.model %>  <%= rental.bike.brand %> de <%= rental.bike.user.first_name %></h5>
-                      <p class="card-text">Ma location du <%= rental.start_date.strftime("%m/%d/%Y") %> au <%= rental.end_date.strftime("%m/%d/%Y") %> <%= rental.status %></p>
+                      <h5 class="card-title"><%= rental.bike.model %>  <%= rental.bike.brand %> de <%= rental.bike.user.first_name.capitalize %></h5>
+                      <h6 class="card-title"><strong><%= rental.total_price.to_i %> €</strong></h6>
+                      <p class="card-text">Du <%= rental.start_date.strftime("%d/%m/%Y") %> au <%= rental.end_date.strftime("%d/%m/%Y") %></p>
+                      <span class="badge badge-rental-pending ms-4">En attente 👀</span>
                     </div>
                   </div>
                 <% end %>
@@ -74,8 +74,10 @@
                       <div class="card-top" style="background-image: url('<%= image_path 'placeholder_bike.jpg' %>')"></div>
                     <% end %>
                     <div class="card-bottom">
-                      <h5 class="card-title"><%= rental.bike.model %>  <%= rental.bike.brand %> de <%= rental.bike.user.first_name %></h5>
-                      <p class="card-text">Ma location du <%= rental.start_date.strftime("%m/%d/%Y") %> au <%= rental.end_date.strftime("%m/%d/%Y") %> <%= rental.status %></p>
+                      <h5 class="card-title"><%= rental.bike.model %>  <%= rental.bike.brand %> de <%= rental.bike.user.first_name.capitalize %></h5>
+                      <h6 class="card-title"><strong><%= rental.total_price.to_i %> €</strong></h6>
+                      <p class="card-text">Du <%= rental.start_date.strftime("%d/%m/%Y") %> au <%= rental.end_date.strftime("%d/%m/%Y") %></p>
+                      <span class="badge badge-rental-accepted ms-4">Acceptée 🥳</span>
                     </div>
                   </div>
                 <% end %>
@@ -93,25 +95,26 @@
                       <div class="card-top" style="background-image: url('<%= image_path 'placeholder_bike.jpg' %>')"></div>
                     <% end %>
                     <div class="card-bottom">
-                      <h5 class="card-title"><%= rental.bike.model %>  <%= rental.bike.brand %> de <%= rental.bike.user.first_name %></h5>
-                      <p class="card-text">Ma location du <%= rental.start_date.strftime("%m/%d/%Y") %> au <%= rental.end_date.strftime("%m/%d/%Y") %> <%= rental.status %></p>
+                      <h5 class="card-title"><%= rental.bike.model %>  <%= rental.bike.brand %> de <%= rental.bike.user.first_name.capitalize %></h5>
+                      <h6 class="card-title"><strong><%= rental.total_price.to_i %> €</strong></h6>
+                      <p class="card-text">Du <%= rental.start_date.strftime("%d/%m/%Y") %> au <%= rental.end_date.strftime("%d/%m/%Y") %></p>
+                      <span class="badge badge-rental-refused ms-4">Refusée 😓</span>
                     </div>
                   </div>
                 <% end %>
               </div>
             <% end %>
-          <% end %>
-        <% else %>
-          <p>Je n'ai pas mis de vélo en location pour le moment</p>
+          </div>
         <% end %>
-      </div>
+      <% else %>
+        <p>Je n'ai pas mis de vélo en location pour le moment</p>
+      <% end %>
     </div>
-
     <div id="requests" data-tab-target="content" class="tab-content d-none">
-      <h2>Demandes de location en attente :</h2>
+      <h2>Demandes en attente</h2>
       <div class="row mt-5">
-        <% if @pending_rentals.present? %>
-          <% @pending_rentals.each do |rental| %>
+        <% if !@rentals_user.empty? %>
+          <% @rentals_user.each do |rental| %>
             <div class="col-4">
               <div class="card mb-4">
                 <% if rental.bike.photo.attached? %>
@@ -119,26 +122,25 @@
                 <% else %>
                   <div class="card-top" style="background-image: url('<%= image_path 'placeholder_bike.jpg' %>')"></div>
                 <% end %>
-                <div class="card-bottom">
-                  <div class="card-bottomup">
-                    <h5 class="card-title">Demande de <%= rental.user.first_name %></h5>
-                    <p class="card-text">Location du <%= rental.start_date.strftime("%m/%d/%Y") %> au <%= rental.end_date.strftime("%m/%d/%Y") %></p>
-                  </div>
-                  <div class="card-bottombottom d-flex row justify-content-around"">
+                <div class="card-bottom center">
+                  <h5 class="card-title">Demande de <%= rental.user.first_name.capitalize %></h5>
+                  <h6 class="card-title"><strong><%= rental.total_price.to_i %> €</strong></h6>
+                  <p class="card-text mb-0">Du <%= rental.start_date.strftime("%d/%m/%Y") %> au <%= rental.end_date.strftime("%d/%m/%Y") %></p>
+                  <div class="d-flex row justify-content-around w-100">
                     <div class="col-auto">
-                      <%= button_to "Valider", accept_rental_path(rental), method: :patch, class: 'btn btn-success btn-fixed-width' %>
+                      <%= button_to "J'accepte", accept_rental_path(rental), method: :patch, class: 'btn btn-flat btn-fixed-width' %>
                     </div>
                     <div class="col-auto">
-                      <%= button_to "Refuser", deny_rental_path(rental), method: :patch, class: 'btn btn-danger btn-fixed-width' %>
+                      <%= button_to "Je refuse", deny_rental_path(rental), method: :patch, class: 'btn btn-flat btn-fixed-width' %>
                     </div>
                   </div>
-                <% end %>
-              <% else %>
-                <p>Il n'y a aucune demande de location en attente pour le moment.</p>
-              <% end %>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
+          <% end %>
+        <% else %>
+          <p>Il n'y a aucune demande de location en attente pour le moment.</p>
+        <% end %>
       </div>
     </div>
   </div>
