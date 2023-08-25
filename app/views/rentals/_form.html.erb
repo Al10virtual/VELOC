@@ -6,10 +6,10 @@
   <% end %>
 <% end %>
 <%= simple_form_for([@bike, @rental]) do |f| %>
-  <%= f.input :start_date,
+  <%= f.input :start_date, label: "Début de la location",
               as: :date, html5: true,
               input_html: { data: { controller: "datepicker" } } %>
-  <%= f.input :end_date,
+  <%= f.input :end_date, label: "Fin de la location",
               as: :date, html5: true,
               input_html: { data: { controller: "datepicker" } } %>
   <%= f.submit %>

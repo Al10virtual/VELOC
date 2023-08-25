@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root to: "pages#home"
 
   get :dashboards, to: 'dashboards#profile'
-  
+
   get 'profile/edit', to: 'dashboards#edit_profile', as: 'edit_profile'
   patch 'profile', to: 'dashboards#update_profile', as: 'update_profile'
 
