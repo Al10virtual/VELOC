@@ -107,38 +107,6 @@ fifth_bike = {    user: User.third,
   puts "Created #{bike.brand} #{bike.model} "
 end
 
-puts "Creating rentals"
-
-first_rental = Rental.new(
-  total_price: 11.5,
-  start_date: "2023-08-25",
-  end_date: "2023-08-26",
-  status: "pending"
-)
-first_rental.user = User.first
-first_rental.bike = Bike.first
-first_rental.save!
-
-second_rental = Rental.new(
-  total_price: 70,
-  start_date: "2023-09-12",
-  end_date: "2023-09-19",
-  status: "accepted"
-)
-second_rental.user = User.fourth
-second_rental.bike = Bike.second
-second_rental.save!
-
-third_rental = Rental.new(
-  total_price: 11.5,
-  start_date: "2023-10-03",
-  end_date: "2023-10-04",
-  status: "refused"
-)
-third_rental.user = User.third
-third_rental.bike = Bike.third
-third_rental.save!
-
 puts "Finished!"
 
 
