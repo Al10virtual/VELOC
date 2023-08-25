@@ -96,8 +96,8 @@
   </div>
   <h2 id="requests">Demandes en attente</h2>
 <div class="row mt-5">
-  <% if @current.present? %>
-    <% @pending_rentals.each do |rental| %>
+  <% if !@rentals_user.empty? %>
+    <% @rentals_user.each do |rental| %>
       <div class="col-4">
         <div class="card mb-4">
           <% if rental.bike.photo.attached? %>

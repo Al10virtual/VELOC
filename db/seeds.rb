@@ -87,6 +87,9 @@ fifth_bike = {    user: User.third,
                   model: "fith_bike",
                   is_electric: false,
                   condition: "État neuf",
+                  address: "4 boulevard Beausejour, 75016 Paris",
+                  price_per_day: 4,
+                  price_per_week: 44 }
 
 [first_bike, second_bike, third_bike, fourth_bike, fifth_bike].each do |attributes|
   url = "https://api.unsplash.com/photos/random?client_id=#{ENV["ACCESS_KEY"]}&query=bicycle&orientation=landscape"

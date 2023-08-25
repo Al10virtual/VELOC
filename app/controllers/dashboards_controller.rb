@@ -6,6 +6,7 @@ class DashboardsController < ApplicationController
     @pending_rentals = @rentals.select { |rental| rental.status == "pending" }
     @accepted_rentals = @rentals.select { |rental| rental.status == "accepted" }
     @denied_rentals = @rentals.select { |rental| rental.status == "denied" }
+    @rentals_user = Rental.where(bike: @user.bikes, status: 'pending')
   end
 
   def edit_profile
