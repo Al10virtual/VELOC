@@ -62,8 +62,11 @@
                   <div class="card-bottom">
                     <div>
                       <h5 class="card-title"><%= bike.brand %> <%= bike.model %></h5>
-                      <p class="card-text"><%= bike.bike_type.upcase%></p>
-                      <div class="card-price"><%= bike.price_per_day.to_i %> € / jour</div>
+                      <%= bike.bike_type.upcase%>
+                      <div class = "d-flex justify-content-between">
+                        <div class="card-price"><%= bike.price_per_day.to_i %> € / jour</div>
+                        <div class="card-price"><%= bike.price_per_week.to_i %> € / semaine</div>
+                      </div>
                     </div>
                   </div>
                 </div>
