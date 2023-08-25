@@ -87,10 +87,6 @@ fifth_bike = {    user: User.third,
                   model: "fith_bike",
                   is_electric: false,
                   condition: "État neuf",
-                  address: "5 Villa Gaudelet, 75011 Paris",
-                  price_per_day: 5,
-                  price_per_week: 55 }
-
 
 [first_bike, second_bike, third_bike, fourth_bike, fifth_bike].each do |attributes|
   url = "https://api.unsplash.com/photos/random?client_id=#{ENV["ACCESS_KEY"]}&query=bicycle&orientation=landscape"
@@ -107,8 +103,6 @@ fifth_bike = {    user: User.third,
   bike.save!
   puts "Created #{bike.brand} #{bike.model} "
 end
-
-
 
 puts "Creating rentals"
 

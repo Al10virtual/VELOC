@@ -3,9 +3,9 @@ class DashboardsController < ApplicationController
     @bikes = current_user.bikes
     @rentals = current_user.rentals
     @user = current_user
-    @pending_rentals = Rental.joins(:bike).where(bikes: { user_id: current_user.id }, status: 'pending')
-    @accepted_rentals = Rental.joins(:bike).where(bikes: { user_id: current_user.id }, status: 'accepted')
-    @denied_rentals = Rental.joins(:bike).where(bikes: { user_id: current_user.id }, status: 'denied')
+    @pending_rentals = @rentals.select { |rental| rental.status == "pending" }
+    @accepted_rentals = @rentals.select { |rental| rental.status == "accepted" }
+    @denied_rentals = @rentals.select { |rental| rental.status == "denied" }
   end
 
   def edit_profile
@@ -26,5 +26,4 @@ class DashboardsController < ApplicationController
   def user_params
     params.require(:user).permit(:email, :first_name, :last_name, :password, :password_confirmation)
   end
-
 end
