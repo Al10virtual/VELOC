@@ -4,6 +4,8 @@ class BikesController < ApplicationController
   def index
     if params[:type].present?
       @bikes = Bike.where(bike_type: params[:type])
+    elsif params[:elec].present?
+      @bikes = Bike.where(is_electric: true)
     else
       @bikes = Bike.all
     end
@@ -21,6 +23,7 @@ class BikesController < ApplicationController
 
   def show
     @bike = Bike.find(params[:id])
+    @rental = Rental.new
   end
 
   def new
